@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinical Reset — Cleaning &amp; Sanitization Reference</title>
+<meta name="description" content="A consolidated domestic cleaning and sanitization reference built on clinical infection-prevention logic: zones, cadence, agents, materials, appliances and completion criteria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asap+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --tint:#f4f3f3;
+  --tint-2:#fafafa;
+  --line:#d9d7d6;
+  --line-soft:#eceaea;
+  --accent:#a29f9f;
+  --ink:#5d5a5b;
+  --ink-strong:#3f3d3e;
+  --sidebar:19rem;
+  --rule:1px solid var(--line);
+  --radius:6px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Asap",system-ui,-apple-system,sans-serif;
+  font-size:1.0625rem;line-height:1.6;font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{color:var(--ink-strong);font-weight:600;line-height:1.2;margin:0}
+p{margin:0 0 .9rem}
+ul,ol{margin:0 0 1rem;padding-left:1.15rem}
+li{margin-bottom:.35rem}
+li::marker{color:var(--accent)}
+strong{font-weight:600;color:var(--ink-strong)}
+a{color:var(--ink-strong);text-underline-offset:.15em;text-decoration-color:var(--accent)}
+code{font-family:inherit;font-weight:600;color:var(--ink-strong)}
+
+/* ============ utility type ============ */
+.label{
+  font-family:"Asap Condensed","Asap",sans-serif;text-transform:uppercase;
+  letter-spacing:.14em;font-size:.72rem;font-weight:600;color:var(--accent);
+}
+
+/* ============ layout ============ */
+.shell{display:flex;min-height:100vh}
+
+/* --- sidebar --- */
+.sidebar{
+  width:var(--sidebar);flex:0 0 var(--sidebar);
+  border-right:var(--rule);background:var(--paper);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{padding:2rem 1.75rem 1.5rem;border-bottom:var(--rule)}
+.brand h1{font-size:1.4rem;font-weight:700;letter-spacing:-.015em;line-height:1.15}
+.brand p{margin:.4rem 0 0;font-size:.82rem;color:var(--accent)}
+nav{padding:1.5rem 0 4rem}
+.nav-group{margin-bottom:1.5rem}
+.nav-group > .label{display:block;padding:0 1.75rem;margin-bottom:.5rem}
+.nav-item{
+  display:block;width:100%;text-align:left;appearance:none;background:none;border:0;
+  font:inherit;color:var(--ink);cursor:pointer;
+  padding:.5rem 1.75rem;line-height:1.35;
+  border-left:3px solid transparent;transition:background .15s ease;
+}
+.nav-item:hover{background:var(--tint-2)}
+.nav-item[aria-current="true"]{background:var(--tint);color:var(--ink-strong);font-weight:600}
+.nav-item:focus-visible{outline:2px solid var(--ink-strong);outline-offset:-2px}
+
+/* --- main --- */
+main{flex:1;min-width:0;padding:3.5rem clamp(1.25rem,4vw,4rem) 8rem;max-width:60rem}
+.page[hidden]{display:none}
+.page-head{margin-bottom:2rem}
+.page-head h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;letter-spacing:-.025em}
+.page-head .sub{margin:.5rem 0 0;color:var(--accent);font-size:1.05rem;max-width:44rem}
+.page-head hr{border:0;border-top:var(--rule);margin:1.75rem 0 0}
+
+/* --- cards --- */
+.card{
+  border:1px solid var(--line-soft);background:var(--tint-2);
+  border-radius:var(--radius);padding:1.25rem 1.4rem;margin-bottom:1rem;
+}
+.card > .label{display:block;margin-bottom:.35rem}
+.card h3{font-size:1.15rem;margin-bottom:.3rem}
+.card p:last-child{margin-bottom:0}
+.card ul:last-child,.card ol:last-child{margin-bottom:0}
+.card.flag{background:var(--paper);border-left:3px solid var(--ink-strong)}
+.card.warn{background:var(--paper);border-left:3px solid var(--accent)}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}
+.grid2 .card{margin-bottom:0}
+
+/* --- section blocks --- */
+.block{margin:2.5rem 0 0}
+.block > .label{display:block;padding-bottom:.5rem;border-bottom:var(--rule);margin-bottom:1.1rem}
+.block h3{margin-top:1.75rem;margin-bottom:.4rem;font-size:1.1rem}
+.block h3:first-of-type{margin-top:0}
+.sub-note{font-size:.9rem;color:var(--accent);margin:-.2rem 0 .6rem}
+
+/* --- tables --- */
+.table-wrap{overflow-x:auto;margin:1rem 0 1.25rem;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.95rem;min-width:32rem}
+th{
+  text-align:left;font-family:"Asap Condensed","Asap",sans-serif;text-transform:uppercase;
+  letter-spacing:.11em;font-size:.72rem;font-weight:600;color:var(--accent);
+  padding:0 1rem .55rem 0;border-bottom:var(--rule);vertical-align:bottom;
+}
+td{padding:.7rem 1rem .7rem 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+td:first-child{font-weight:600;color:var(--ink-strong)}
+tr:last-child td{border-bottom:var(--rule)}
+.no td:first-child,.no th:first-child{color:var(--ink-strong)}
+
+/* --- zone chips --- */
+.zonebar{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.25rem}
+.zone{
+  display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);
+  border-radius:100px;padding:.3rem .85rem .3rem .6rem;font-size:.85rem;
+}
+.dot{width:.6rem;height:.6rem;border-radius:50%;flex:0 0 auto}
+.d-green{background:#7a8c7f}.d-yellow{background:#a89a6f}
+.d-blue{background:#6a7a8c}.d-red{background:#8c6a6a}
+.d-white{background:var(--paper);border:1px solid var(--line)}
+
+/* --- checklist --- */
+.checklist{list-style:none;margin:1rem 0 0;padding:0;border-top:var(--rule)}
+.checklist li{margin:0;border-bottom:1px solid var(--line-soft)}
+.chk{display:flex;gap:.85rem;align-items:flex-start;padding:.8rem .25rem;cursor:pointer}
+.chk input{
+  appearance:none;width:1.1rem;height:1.1rem;flex:0 0 auto;margin-top:.28rem;
+  border:1.5px solid var(--accent);border-radius:3px;background:var(--paper);cursor:pointer;
+}
+.chk input:checked{background:var(--ink-strong);border-color:var(--ink-strong)}
+.chk input:checked::after{
+  content:"";display:block;width:.3rem;height:.55rem;margin:.05rem auto 0;
+  border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(42deg);
+}
+.chk input:focus-visible{outline:2px solid var(--ink-strong);outline-offset:2px}
+.chk .txt strong{display:block}
+.chk .txt small{display:block;color:var(--accent);font-size:.85rem;line-height:1.4;margin-top:.1rem}
+.chk .t{
+  font-family:"Asap Condensed","Asap",sans-serif;font-size:.75rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);flex:0 0 4.5rem;margin-top:.32rem;
+}
+li.done .chk .txt strong{color:var(--accent);text-decoration:line-through;text-decoration-color:var(--line)}
+.chk-sub{margin:0 0 .9rem 5.6rem;padding-left:1.1rem;font-size:.94rem}
+@media(max-width:36rem){.chk-sub{margin-left:1.9rem}.chk .t{flex-basis:100%;order:-1}.chk{flex-wrap:wrap}}
+
+.progress{display:flex;align-items:center;gap:1rem;margin:1.25rem 0 0}
+.track{flex:1;height:5px;background:var(--tint);border:1px solid var(--line-soft)}
+.track i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s ease}
+.progress .count{font-size:.9rem;color:var(--accent);white-space:nowrap}
+.btn{
+  appearance:none;background:var(--paper);border:var(--rule);border-radius:var(--radius);
+  font:inherit;font-size:.9rem;color:var(--ink-strong);padding:.4rem .9rem;cursor:pointer;
+}
+.btn:hover{background:var(--tint)}
+
+/* --- timer --- */
+.timer{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;margin:1.25rem 0}
+.dial{
+  width:8.5rem;height:8.5rem;border-radius:50%;display:grid;place-items:center;
+  background:var(--tint);position:relative;
+}
+.dial::after{content:"";position:absolute;inset:.6rem;background:var(--paper);border-radius:50%}
+.dial span{position:relative;z-index:1;font-size:1.7rem;font-weight:700;color:var(--ink-strong)}
+.timer-ctl{display:flex;flex-direction:column;gap:.6rem}
+.seg{display:flex;border:var(--rule);border-radius:var(--radius);overflow:hidden;width:max-content}
+.seg button{
+  appearance:none;background:var(--paper);border:0;border-right:var(--rule);font:inherit;
+  font-size:.88rem;padding:.4rem .85rem;color:var(--ink);cursor:pointer;
+}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink-strong);color:var(--paper)}
+
+/* --- misc --- */
+.footnote{margin-top:3rem;padding-top:1.25rem;border-top:var(--rule);font-size:.88rem;color:var(--accent)}
+.menu-btn{display:none}
+
+/* --- responsive --- */
+@media(max-width:60rem){
+  .shell{display:block}
+  .sidebar{
+    position:fixed;inset:0 auto 0 0;z-index:40;transform:translateX(-100%);
+    transition:transform .22s ease;box-shadow:0 0 40px rgba(0,0,0,.08);width:17rem;flex-basis:17rem;
+  }
+  body.nav-open .sidebar{transform:none}
+  body.nav-open::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:30}
+  main{padding-top:4.75rem;max-width:none}
+  .menu-btn{
+    display:flex;align-items:center;gap:.5rem;position:fixed;top:0;left:0;right:0;z-index:50;
+    background:var(--paper);border:0;border-bottom:var(--rule);width:100%;
+    font:inherit;font-size:.95rem;font-weight:600;color:var(--ink-strong);
+    padding:.85rem 1.25rem;cursor:pointer;
+  }
+  .menu-btn i{display:block;width:1rem;height:2px;background:var(--ink-strong);position:relative}
+  .menu-btn i::before,.menu-btn i::after{
+    content:"";position:absolute;left:0;width:1rem;height:2px;background:var(--ink-strong)
+  }
+  .menu-btn i::before{top:-5px}.menu-btn i::after{top:5px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+@media print{
+  .sidebar,.menu-btn,.progress,.timer,.btn{display:none!important}
+  main{padding:0;max-width:none}
+  .page[hidden]{display:block!important}
+  .card{break-inside:avoid;background:none}
+  body{font-size:10.5pt}
+}
+</style>
+</head>
+<body>
+
+<button class="menu-btn" id="menuBtn" aria-expanded="false"><i></i> Clinical Reset — contents</button>
+
+<div class="shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <h1>Clinical Reset</h1>
+    <p>Cleaning &amp; sanitization reference · rev 2.0</p>
+  </div>
+  <nav id="nav" aria-label="Sections">
+
+    <div class="nav-group">
+      <span class="label">Overview</span>
+      <button class="nav-item" data-page="use">How to use this</button>
+      <button class="nav-item" data-page="principles">Standing principles</button>
+      <button class="nav-item" data-page="zones">Zone map</button>
+      <button class="nav-item" data-page="cloths">Cloths, caddies, tools</button>
+      <button class="nav-item" data-page="habit">Making it stick</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Phase 1 — Daily</span>
+      <button class="nav-item" data-page="daily">Daily reset · 15 min</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Phase 2 — Weekly</span>
+      <button class="nav-item" data-page="weekly">Weekly reclean · 60 min</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Phase 3 — Monthly</span>
+      <button class="nav-item" data-page="monthly">Deep clean · 120 min</button>
+      <button class="nav-item" data-page="seasonal">Quarterly &amp; seasonal</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Chemistry</span>
+      <button class="nav-item" data-page="kit">The kit</button>
+      <button class="nav-item" data-page="agents">Agent selection</button>
+      <button class="nav-item" data-page="hazards">Hazards &amp; never-mix</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Materials</span>
+      <button class="nav-item" data-page="floors">Floors &amp; walls</button>
+      <button class="nav-item" data-page="kitchen-mat">Kitchen surfaces</button>
+      <button class="nav-item" data-page="bath-mat">Bathroom surfaces</button>
+      <button class="nav-item" data-page="balcony">Balcony</button>
+      <button class="nav-item" data-page="soft">Textiles, books, fixtures</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Appliances</span>
+      <button class="nav-item" data-page="range">Frigidaire range</button>
+      <button class="nav-item" data-page="fridge">Electrolux fridge</button>
+      <button class="nav-item" data-page="dishwasher">Bosch dishwasher</button>
+      <button class="nav-item" data-page="washer">Blomberg washer</button>
+      <button class="nav-item" data-page="dryer">Blomberg dryer</button>
+    </div>
+
+    <div class="nav-group">
+      <span class="label">Daily tools</span>
+      <button class="nav-item" data-page="timer">Contact-time timer</button>
+      <button class="nav-item" data-page="criteria">Completion criteria</button>
+      <button class="nav-item" data-page="escalation">Illness &amp; spills</button>
+      <button class="nav-item" data-page="supplies">Supply list</button>
+      <button class="nav-item" data-page="open">Open items</button>
+    </div>
+
+  </nav>
+</aside>
+
+<main id="main">
+
+<!-- ================= HOW TO USE ================= -->
+<section class="page" id="p-use">
+  <div class="page-head">
+    <h2>How to use this</h2>
+    <p class="sub">One reference for a domestic environment run on clinical infection-prevention logic. Consult it by phase on the day, and by material when you meet a surface you are unsure about.</p>
+    <hr>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="label">Primary goal</span>
+      <h3>Interrupt transmission</h3>
+      <p>Clean the points that actually carry contamination — hands, touchpoints, wet zones, food contact — rather than cleaning by appearance. Visible tidiness and microbial risk are different problems.</p>
+    </div>
+    <div class="card">
+      <span class="label">Primary goal</span>
+      <h3>Make it repeatable</h3>
+      <p>A protocol that is followed at 80% every week beats one followed at 100% twice a year. Effort ceilings, fixed cues and pre-staged equipment exist to protect adherence.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">The two ways in</span>
+    <p><strong>By phase.</strong> Daily reset every evening, weekly reclean on Saturday morning, deep clean on the first Saturday of the month. Each has a checklist that remembers your progress and clears itself when the interval rolls over.</p>
+    <p><strong>By material.</strong> When you are standing in front of a surface and unsure, go to the materials section. Products map to materials, not to rooms — the zones organize your time, the materials determine the chemistry.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">What this is not</span>
+    <p>Not a standard for a setting in which clinical care is delivered, and not a substitute for regulated healthcare cleaning requirements. It borrows the reasoning — cleaning before disinfection, zoning, single-zone equipment, observed contact time, defined completion criteria — and applies it at domestic scale.</p>
+    <p>Not sterility. The objective is risk reduction to a level appropriate for a home, at an effort level that is sustainable indefinitely.</p>
+    <p>Not a licence to exceed the label. Product instructions and safety data sheets govern all agent use, and where a manufacturer's manual and this document disagree, the manual wins.</p>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Revision note</span>
+    <p>Revision 2.0 consolidates the three-phase protocol, the material matrix, the supply list and the appliance procedures into a single document. Two earlier errors are corrected here: floors throughout are <strong>laminate</strong>, not vinyl, which changes the water rule entirely; and Clorox Bio Stain &amp; Odor is treated as the working disinfectant, since it is an EPA-registered one-step product at 2.2% stabilized hydrogen peroxide.</p>
+  </div>
+</section>
+
+<!-- ================= PRINCIPLES ================= -->
+<section class="page" id="p-principles">
+  <div class="page-head">
+    <h2>Standing principles</h2>
+    <p class="sub">These govern every phase and are stated once. Where a step is ambiguous, the principle decides.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">01 — Clean, then disinfect</span>
+    <p>Cleaning removes soil and organic matter through detergent and friction. Disinfection reduces surviving microorganisms on an already-clean surface. The two are sequential, never interchangeable.</p>
+    <p>A disinfectant applied over organic matter is largely consumed by that matter before it reaches anything living. <strong>A surface that has not been cleaned has not been disinfected</strong>, regardless of what was sprayed on it. This is the single most common failure in domestic cleaning.</p>
+    <p>Sterilization is a clinical process and is not indicated anywhere in a home.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">02 — Order of operations</span>
+    <ol>
+      <li><strong>Clean to contained.</strong> Cleanest zone first, sanitary areas last, in one direction through the residence.</li>
+      <li><strong>Top to bottom.</strong> Surfaces before floors, so displaced soil falls onto what has not yet been cleaned.</li>
+      <li><strong>Dry to wet.</strong> Remove loose debris before introducing liquid. Water on dry soil makes a film that is harder to lift and spreads it further.</li>
+      <li><strong>Low-touch before high-touch</strong> within a zone, so the surfaces that matter most are cleaned with the least-loaded cloth.</li>
+    </ol>
+    <p>Where two rules conflict, the lower number wins.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">03 — Contact time</span>
+    <p>A disinfectant works only while the surface stays <em>visibly wet</em> for the interval on its label. Bio Stain is 30 seconds to 1 minute; 70% alcohol needs roughly 30 seconds. Wipe after the interval has elapsed, not before — and do not chase a dry patch by adding more product to an area you have already wiped.</p>
+    <p>70% isopropyl outperforms 99% as a disinfectant. Water is needed for alcohol to denature proteins, and it slows evaporation enough to hold contact time. 99% flashes off too fast.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">04 — Equipment does not cross zones</span>
+    <p>Cloths, brushes and bottles stay in the zone they belong to. A cloth goes to laundry at the end of its zone rather than being rinsed and reused, and it is never returned to the solution bottle after touching a surface — double-dipping contaminates the whole container.</p>
+    <p>Colour-coding failures are invisible until something goes wrong, which is exactly why the assignment has to be fixed rather than remembered.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">05 — Assess before you start</span>
+    <p>Thirty seconds of looking, borrowed directly from clinical practice: is there a spill, breakage, or anything requiring gloves before the routine pass? Is clutter going to make the surface unreachable? Is anything damaged and in need of repair rather than cleaning? Deal with those first, or the routine work will be done around them indefinitely.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">06 — Dried deposits are wetted first</span>
+    <p>Dry brushing or sweeping a dried organic deposit aerosolizes it into your breathing zone. Wet it, cover it, leave it, lift it, bag it, then disinfect and observe the dwell. This applies to bird droppings on the balcony above all.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">07 — Balcony containment</span>
+    <p>The balcony has no drain, and everything on it sits above a neighbouring space. Introduce only the volume of solution a bucket can take back. Wring over the bucket, never over the edge. Carry wastewater indoors for disposal. Nothing is hosed, flooded or swept over the railing.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">08 — Hand hygiene</span>
+    <p>Wash hands at every zone change, and for at least 20 seconds with soap and warm water after any disinfection work or glove removal. Gloves are not a substitute for this; they are a barrier that is itself contaminated by the end of the task.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">09 — Stopping on time is adherence</span>
+    <p>Each phase has an allotted interval. When it elapses, the phase is complete by definition. Work beyond it is outside the protocol and is the mechanism by which routines become unsustainable and then get abandoned.</p>
+  </div>
+</section>
+
+<!-- ================= ZONES ================= -->
+<section class="page" id="p-zones">
+  <div class="page-head">
+    <h2>Zone map</h2>
+    <p class="sub">Zones are defined by potential for microbial growth and by direction of travel, not by room function alone. Wet and dry classification sits underneath and determines which steps apply.</p>
+    <hr>
+  </div>
+
+  <div class="zonebar">
+    <span class="zone"><i class="dot d-green"></i> Clean</span>
+    <span class="zone"><i class="dot d-yellow"></i> Transition</span>
+    <span class="zone"><i class="dot d-blue"></i> Kitchen</span>
+    <span class="zone"><i class="dot d-red"></i> Contained</span>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Order of the pass</span>
+    <p>Bedroom and studio → living area → entry → balcony → kitchen → bathroom, finishing with the toilet. Floors follow all surface work, mopped from clean zones toward contained ones. Hands washed at each change; gloves changed between kitchen and bathroom.</p>
+  </div>
+
+  <div class="block">
+    <span class="label"><i class="dot d-green" style="display:inline-block;margin-right:.4rem"></i> Clean zone — bedroom, studio</span>
+    <p class="sub-note">Dry strategy · green cloths · minimal products · cleaned first</p>
+    <ul>
+      <li>Dry method throughout. Dust top to bottom, vacuum, and 70% alcohol on the small number of real touchpoints — door handle, light switch, lamp switch, nightstand.</li>
+      <li>Bedding laundered weekly, at the highest temperature the label tolerates.</li>
+      <li>Floor washed monthly, during the deep clean. Mattress vacuumed and rotated monthly.</li>
+      <li>No cleaning products stored here. Cloths arrive clean and leave with the laundry.</li>
+      <li>The studio returns to a defined neutral baseline at the end of each day rather than being cleaned again.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label"><i class="dot d-yellow" style="display:inline-block;margin-right:.4rem"></i> Transition zones — entry, floor edges, balcony</span>
+    <p class="sub-note">Mixed strategy · yellow cloths · the route contamination travels</p>
+    <p>These are neither reliably clean nor consistently wet, which is why they get their own category. Their job is to stop soil migrating inward.</p>
+    <ul>
+      <li><strong>Entry.</strong> A dry zone at wet-zone frequency. Floor cleared and washed weekly; door handle, deadbolt, light switch and intercom disinfected weekly.</li>
+      <li><strong>Floor edges and baseboards.</strong> Where dust actually lives, given laminate floors and no rugs. Crevice tool weekly, washed monthly. Keep the main vacuum head off the baseboards — that is what damaged the bathroom MDF.</li>
+      <li><strong>Balcony.</strong> Both wet and dry, and fully contained. Its job is to stop dust coming inward, not to be clean in itself. A coarse mat at the door and shoes staying outside does more for the interior than any amount of balcony scrubbing.</li>
+      <li><strong>Living area.</strong> Predominantly dry. Dust, vacuum, alcohol on touchpoints and electronics — always applied to the cloth, never to the device.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label"><i class="dot d-blue" style="display:inline-block;margin-right:.4rem"></i> Kitchen</span>
+    <p class="sub-note">Wet and dry · blue cloths · highest-priority zone</p>
+    <ul>
+      <li>Risk profile is foodborne transmission and cross-contamination, which is why it outranks the bathroom for daily attention despite carrying less obvious soil.</li>
+      <li>Full sequence — clear, wash, disinfect — on all food-contact and food-adjacent surfaces.</li>
+      <li>Dry approach above the working plane: cabinet faces, light fixture, appliance tops.</li>
+      <li>Disposable paper towel is used for oven cleaning only. Everything else is blue microfiber.</li>
+      <li>All kitchen supplies stay in the kitchen caddy, which does not travel.</li>
+      <li>The sink is treated as a contained item, not a clean one. It is the dirtiest point in the zone.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label"><i class="dot d-red" style="display:inline-block;margin-right:.4rem"></i> Contained zone — bathroom, waste</span>
+    <p class="sub-note">Wet strategy · red cloths · cleaned last, always</p>
+    <ul>
+      <li>Red cloths, brushes and bottles live in the bathroom permanently and never leave it.</li>
+      <li>Gloves on, ventilation running, before anything else.</li>
+      <li>Order within the zone: light fixture and mirror → shelves → sink and taps → tub → toilet → floor.</li>
+      <li>Disposable paper towel for the toilet exclusively — bowl exterior, seat, lid, tank, base, and the floor immediately around it. It goes straight to the bin; nothing that touches the toilet touches anything else.</li>
+      <li>The toilet is the final task of the entire apartment pass.</li>
+      <li>Toilet seat plastic gets Bio Stain, <strong>not alcohol</strong> — repeated alcohol crazes and whitens seat plastics.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CLOTHS ================= -->
+<section class="page" id="p-cloths">
+  <div class="page-head">
+    <h2>Cloths, caddies, tools</h2>
+    <p class="sub">The separation system is what makes zoning real. Without it, zones are a description of the apartment rather than a control.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Cloth assignment</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Colour</th><th>Zone</th><th>Weave</th></tr></thead>
+      <tbody>
+        <tr><td>Blue</td><td>Kitchen</td><td>General microfiber</td></tr>
+        <tr><td>Red</td><td>Bathroom, waste</td><td>General microfiber</td></tr>
+        <tr><td>Green</td><td>Bedroom, living, studio</td><td>General microfiber</td></tr>
+        <tr><td>Yellow</td><td>Entry, edges, balcony</td><td>General microfiber</td></tr>
+        <tr><td>White</td><td>Glass, screens, granite buffing</td><td>Flat weave</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <ul>
+      <li>Hot wash, <strong>no fabric softener</strong> — it permanently coats the fibres and destroys the electrostatic action that makes microfiber work.</li>
+      <li>Launder cloths and mop pads separately from household textiles, and dry them completely before storage. Damp storage undoes the entire protocol.</li>
+      <li>Buy far more than seems necessary. The zoning system only holds if you never run out mid-clean.</li>
+      <li>One cloth, one zone, one pass. Retire it to laundry rather than rinsing and revisiting.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Caddies — one per zone, none travel</span>
+    <div class="grid2">
+      <div class="card">
+        <span class="label">Kitchen</span>
+        <p>Dawn · alcohol spray · Bio Stain spray · blue cloths · one flat-weave cloth</p>
+      </div>
+      <div class="card">
+        <span class="label">Bathroom — never leaves</span>
+        <p>Dawn · Bio Stain spray · Bar Keeper's Friend · soft tub brush · detail brush · toilet brush · red cloths · gloves</p>
+      </div>
+      <div class="card">
+        <span class="label">General</span>
+        <p>Alcohol spray · green cloths · extendable duster · flat-weave for screens</p>
+      </div>
+      <div class="card">
+        <span class="label">Balcony — outdoor only</span>
+        <p>Stiff broom · medium nylon deck brush · bucket · squeegee · percarbonate</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">Container discipline</span>
+    <ul>
+      <li>Label every decanted bottle with contents, dilution and date. Refill, wash and relabel monthly.</li>
+      <li><strong>Narrow-necked spray bottles rather than buckets</strong> for surface solutions — it is physically impossible to double-dip a cloth into a spray bottle, which is the point.</li>
+      <li>Two-container method for floors: one detergent solution, one rinse water. Wring before re-dipping.</li>
+      <li>Never put personal items, food or drink in a caddy.</li>
+      <li>Keep the kit visible and reachable. Anything stored behind another object will not get used on a low-energy day, and low-energy days are the ones the system exists for.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Monthly equipment rotation</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Item</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Microfiber cloths</td><td>Launder hot, dry fully before storage</td></tr>
+        <tr><td>Mop pads</td><td>Launder; keep 4–6 so a dirty pad is never reused</td></tr>
+        <tr><td>Scrub brushes</td><td>Disinfect, dry bristles down</td></tr>
+        <tr><td>Decant bottles</td><td>Empty, wash, refill, relabel with date</td></tr>
+        <tr><td>Vacuum filter</td><td>Inspect; replace if due</td></tr>
+        <tr><td>Crevice and brush tools</td><td>Wash and dry — confirm they are in use, not just owned</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Sponges are not on this list because they cannot be decontaminated. Microfiber and brushes replace them.</p>
+  </div>
+</section>
+
+<!-- ================= HABIT ================= -->
+<section class="page" id="p-habit">
+  <div class="page-head">
+    <h2>Making it stick</h2>
+    <p class="sub">Design notes for adherence. The protocol is only as good as the number of weeks you actually run it.</p>
+    <hr>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="label">Mechanism</span>
+      <h3>Fixed cues, not decisions</h3>
+      <p>Daily reset begins when the workstation shuts down. Weekly reclean is Saturday morning. Deep clean is the first Saturday. Nothing here requires deciding when — only starting.</p>
+    </div>
+    <div class="card">
+      <span class="label">Mechanism</span>
+      <h3>Effort ceilings</h3>
+      <p>15, 60, 120 minutes. The ceiling is the commitment. Finishing early is fine; running over is a protocol failure, not extra credit.</p>
+    </div>
+    <div class="card">
+      <span class="label">Mechanism</span>
+      <h3>Pre-staged equipment</h3>
+      <p>Four caddies that never move mean zero setup cost. Setup cost is what kills a routine on a tired evening.</p>
+    </div>
+    <div class="card">
+      <span class="label">Mechanism</span>
+      <h3>A defined handover</h3>
+      <p>Each daily reset ends with one recorded line: the next session begins with —. Ending at a defined point is what makes the next start cheap.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">The minimum viable day</span>
+    <p>On a day when 15 minutes is not available, do these three things and consider the day covered:</p>
+    <ol>
+      <li>Kitchen containment — food sealed, waste closed, nothing left soaking.</li>
+      <li>One pass over the touchpoints of whichever zone you used most.</li>
+      <li>Cloths used today into the laundry.</li>
+    </ol>
+    <p>This is a legitimate outcome, not a partial failure. A protocol with a defined floor survives bad weeks; one without a floor gets abandoned during them.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Organization as infection control</span>
+    <p>Clutter is not an aesthetic problem in this framework — it is a surface that cannot be reached. Every object sitting on a horizontal surface is a surface that will not be wiped, and every object without a home is a decision to be made again tomorrow.</p>
+    <ul>
+      <li>Horizontal surfaces have a defined baseline state. Returning them to it <em>is</em> the daily reset.</li>
+      <li>Anything on the floor blocks the weekly floor pass. Get planters, bins and boxes onto legs or risers.</li>
+      <li>Nothing sits flat on the balcony through the wet months — that is where algae reservoirs form.</li>
+      <li>Reduce products before you reduce anything else. Redundant chemistry is cognitive load disguised as preparedness.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Verification without perfectionism</span>
+    <p>Clinical programmes verify cleaning by direct observation, fluorescent markers or ATP swabs. The domestic equivalent is the completion criteria — a short, objective list checked once at the end of a phase. Check it, then stop.</p>
+    <p>Fragranced products are avoided partly for this reason: fragrance masks odour-neutrality, which is one of the few honest signals available for whether a wet zone is actually clean.</p>
+  </div>
+</section>
+
+<!-- ================= DAILY ================= -->
+<section class="page" id="p-daily">
+  <div class="page-head">
+    <h2>Daily reset</h2>
+    <p class="sub">15 minutes, every evening. Containment and handover.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Intent</span>
+    <p>A closing sequence rather than a second clean. Interrupt transmission at the touchpoints used today, contain organic matter overnight, and close the working day at a defined point. Scope is limited to what was actually used.</p>
+  </div>
+
+  <div class="card warn">
+    <span class="label">Deliberately out of scope</span>
+    <p>Floors, bathroom, dusting, bedding, windows and deep kitchen surfaces belong to phases 2 and 3. Leaving them untouched now is a specified part of the protocol, not a shortcut.</p>
+  </div>
+
+  <div class="progress"><div class="track"><i></i></div><span class="count"></span><button class="btn" data-reset>Clear</button></div>
+  <ul class="checklist" data-list="daily"></ul>
+</section>
+
+<!-- ================= WEEKLY ================= -->
+<section class="page" id="p-weekly">
+  <div class="page-head">
+    <h2>Weekly reclean</h2>
+    <p class="sub">60 minutes, Saturday morning. Zone-by-zone control, cleanest zone to contained zone.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Intent</span>
+    <p>Full zone-by-zone control across the residence. Each zone is a discrete area with its own risk profile, agents and equipment. Time allocations are suggestions; the sequence is not optional.</p>
+  </div>
+
+  <div class="card warn">
+    <span class="label">Deliberately out of scope</span>
+    <p>Concealed reservoirs — appliance seals, drains, mattress surfaces, filters, upholstery seams — are scheduled monthly and are not opened here.</p>
+  </div>
+
+  <div class="progress"><div class="track"><i></i></div><span class="count"></span><button class="btn" data-reset>Clear</button></div>
+  <ul class="checklist" data-list="weekly"></ul>
+</section>
+
+<!-- ================= MONTHLY ================= -->
+<section class="page" id="p-monthly">
+  <div class="page-head">
+    <h2>Monthly deep clean</h2>
+    <p class="sub">120 minutes, first Saturday. Reservoirs and systems.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Intent</span>
+    <p>Preventive systems hygiene. Address the concealed reservoirs that accumulate slowly — dust, textile load, moisture, biofilm, filters — and reduce the effort the daily and weekly phases require. The textile cycle runs first so laundry proceeds in the background. Complete in one session or split across the day.</p>
+  </div>
+
+  <div class="card warn">
+    <span class="label">Deliberately out of scope</span>
+    <p>Routine touchpoints and floors are covered weekly and are not repeated. Seasonal work is scheduled separately, two to three zones per season.</p>
+  </div>
+
+  <div class="progress"><div class="track"><i></i></div><span class="count"></span><button class="btn" data-reset>Clear</button></div>
+  <ul class="checklist" data-list="monthly"></ul>
+</section>
+
+<!-- ================= SEASONAL ================= -->
+<section class="page" id="p-seasonal">
+  <div class="page-head">
+    <h2>Quarterly &amp; seasonal</h2>
+    <p class="sub">Low-frequency work that protects the higher-frequency phases. Two or three items per season rather than one large project.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Quarterly</span>
+    <ul>
+      <li>Refrigerator condenser coils and the floor beneath — pull the unit out, vacuum with a brush attachment.</li>
+      <li>Range hood filter degreased; confirm whether it vents outside or recirculates.</li>
+      <li>Behind and beneath all large appliances.</li>
+      <li>Baking soda in the fridge replaced.</li>
+      <li>Descale kettle, shower head and tap aerators with citric acid.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Seasonal — wet months</span>
+    <ul>
+      <li>Balcony algae treatment. This returns every wet season; it is a recurring line item, not a failure of the last treatment.</li>
+      <li>Everything on the balcony onto risers so air moves underneath. Nothing left sitting flat.</li>
+      <li>Balcony drain path kept clear.</li>
+      <li>Weather stripping and door seals inspected.</li>
+      <li>Entry mat replaced or deep cleaned — it is the highest-leverage object in the apartment for keeping soil out.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Annual</span>
+    <ul>
+      <li>Granite seal test: leave a small pool of water for fifteen minutes. If the stone darkens, reseal.</li>
+      <li>Rare book inspection — foxing, mould odour, insect activity, humidity damage.</li>
+      <li>Dryer exhaust duct cleared, if the unit is vented.</li>
+      <li>Closet purge and mattress rotation.</li>
+      <li>Caulking inspected in the bathroom; silicone replaced where it has failed.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= KIT ================= -->
+<section class="page" id="p-kit">
+  <div class="page-head">
+    <h2>The kit</h2>
+    <p class="sub">Six products cover every material in the apartment. Every item earns its place by covering a job nothing else covers.</p>
+    <hr>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Product</th><th>Role</th><th>Restriction</th></tr></thead>
+    <tbody>
+      <tr><td>Dawn dish soap</td><td>Primary cleaner — every material in the apartment</td><td>None. Rinse residue on food-contact surfaces</td></tr>
+      <tr><td>70% isopropyl</td><td>Disinfection of small, dry, hard surfaces; touchpoints, electronics, granite finishing</td><td><strong>Not</strong> fridge interior · <strong>not</strong> gaskets · <strong>not</strong> toilet seat plastic · <strong>not</strong> matte paint · <strong>not</strong> fabric</td></tr>
+      <tr><td>Clorox Bio Stain &amp; Odor</td><td>The working disinfectant. 2.2% stabilized hydrogen peroxide, EPA-registered one-step, bleach-free</td><td>Rinse on food-contact. Not left on granite — low pH degrades sealer. Fragranced</td></tr>
+      <tr><td>Tide Free &amp; Clear</td><td>Bedding, cloths, towels, all textiles</td><td>No fabric softener with it, ever</td></tr>
+      <tr><td>Windex Vinegar</td><td>Glass and mirrors</td><td>Acetic acid — glass only, nothing else</td></tr>
+      <tr><td>Bar Keeper's Friend</td><td>Stainless sink and porcelain</td><td>Two surfaces only. Oxalic acid + abrasive. Rinse completely</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="block">
+    <span class="label">Specialty additions</span>
+    <ul>
+      <li><strong>Sodium percarbonate</strong> — balcony algae, tub soap scum, cloth refresh, grout. Buy 1 kg; it is hygroscopic and loses active oxygen in storage.</li>
+      <li><strong>Citric acid</strong> — descaling only. Kettle, shower head, aerators, washing machine. Not a disinfectant and never a substitute for one.</li>
+      <li><strong>Bio-Clean</strong> — monthly drain maintenance. Roughly 100 treatments per can.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Deliberately not owned</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Not buying</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Chlorine bleach</td><td>No use case here. Pits stainless, damages balcony paint, degrades gaskets, bad runoff</td></tr>
+        <tr><td>Steam cleaner</td><td>Destroys laminate faster than anything else. No carpet to justify it</td></tr>
+        <tr><td>Scouring powder</td><td>Nothing here tolerates it. Bar Keeper's Friend covers the two surfaces that do</td></tr>
+        <tr><td>Sponges</td><td>Cannot be decontaminated</td></tr>
+        <tr><td>Disinfecting wipes</td><td>Quats, inactivated by soap residue, and the Bio Stain is better</td></tr>
+        <tr><td>Murphy's Oil Soap, floor polish</td><td>Permanent film on laminate; cannot be removed</td></tr>
+        <tr><td>Pressure washer</td><td>Strips paint from concrete</td></tr>
+        <tr><td>Scented all-purpose sprays</td><td>Fragrance masks the odour-neutrality signal used as a completion criterion</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AGENTS ================= -->
+<section class="page" id="p-agents">
+  <div class="page-head">
+    <h2>Agent selection</h2>
+    <p class="sub">What each agent does, where it goes, and what constrains it.</p>
+    <hr>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Agent</th><th>Function</th><th>Applied to</th><th>Constraint</th></tr></thead>
+    <tbody>
+      <tr><td>Dish detergent + warm water</td><td>Soil and organic matter removal</td><td>All surfaces, as the first pass</td><td>Requires mechanical friction; rinse residue</td></tr>
+      <tr><td>Isopropyl alcohol 70%</td><td>Disinfection, small dry hard surfaces</td><td>Touchpoints, devices, switches, granite finishing</td><td>Evaporates fast; apply to cloth, not to the device. Flammable</td></tr>
+      <tr><td>Bio Stain (2.2% H₂O₂)</td><td>Disinfection in damp environments</td><td>Bathroom fixtures, sink, toilet, tub, food-contact after rinse</td><td>30 s–1 min dwell; may lighten textiles; rinse on food-contact</td></tr>
+      <tr><td>Sodium percarbonate</td><td>Oxidative soak — algae, soap scum, grout</td><td>Balcony (half strength), tub, cloths</td><td>Not a surface disinfectant. Test on paint first</td></tr>
+      <tr><td>Citric acid</td><td>Descaling and mineral scale only</td><td>Kettle, shower head, taps, washer, dishwasher</td><td>Not a disinfectant. Rinse fully. Never with any chlorine product</td></tr>
+      <tr><td>Bar Keeper's Friend</td><td>Abrasive + oxalic acid, stain lift</td><td>Stainless sink, porcelain</td><td>With the grain. Rinse completely — residue discolours stainless</td></tr>
+      <tr><td>Vacuum, HEPA</td><td>Particulate and allergen removal</td><td>Floors, edges, upholstery seams, mattress</td><td>Always precedes wet cleaning</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Selection rule</span>
+    <p>One product per surface, rinse between. If you are reaching for a second agent on the same surface in the same pass, stop and check whether the first one simply needed more contact time or more friction.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Properties that matter</span>
+    <p>Clinical guidance selects disinfectants on rapid action at short contact time, effectiveness in the presence of residual organic matter, material compatibility, non-flammability, and stability at working dilution. The Bio Stain scores well on the first three and is the reason it is the working disinfectant here rather than the alcohol, which is faster to evaporate and flammable.</p>
+    <p>Neutral-pH detergents (pH 6–8) are preferred for general cleaning because of their breadth of material compatibility. Dawn fits this.</p>
+  </div>
+</section>
+
+<!-- ================= HAZARDS ================= -->
+<section class="page" id="p-hazards">
+  <div class="page-head">
+    <h2>Hazards &amp; never-mix</h2>
+    <p class="sub">The damage that would actually be done, ranked, plus the combinations that are dangerous rather than merely ineffective.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Never combine</span>
+    <ul>
+      <li>Chlorine bleach + ammonia — chloramine gas</li>
+      <li>Chlorine bleach + any acid, including vinegar and citric acid — chlorine gas</li>
+      <li>Chlorine bleach + alcohol</li>
+      <li>Hydrogen peroxide + acid</li>
+      <li><strong>Simplest rule: one product per surface, rinse between.</strong></li>
+    </ul>
+    <p>Ventilate during all disinfection work. Keep alcohol away from the range — it is flammable. Store everything in original or clearly labelled, dated containers, and keep safety data sheets accessible.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">The six real hazards, ranked by damage</span>
+    <ol>
+      <li><strong>Water on laminate floors.</strong> The core is compressed fibreboard. Swelling at the seams is permanent and unfixable. Damp mop only, dry immediately, and no steam ever.</li>
+      <li><strong>Alcohol inside the fridge.</strong> Causes stress cracking in ABS and polystyrene liners. Damage appears weeks later and spreads. It also dries and cracks door gaskets.</li>
+      <li><strong>Bar Keeper's Friend on the fibreglass tub.</strong> Micro-scratches the gelcoat. Dulled gelcoat holds soil worse, so you scrub harder, and it accelerates. Irreversible.</li>
+      <li><strong>Bar Keeper's Friend on polished granite.</strong> The abrasive dulls the polish and the oxalic acid degrades the sealer. Dark polished stone shows dulling more than any other surface here.</li>
+      <li><strong>Full-strength percarbonate and a stiff brush on the balcony.</strong> Lifts aged paint and abrades the non-slip texture. Half strength, medium nylon brush, test a corner first.</li>
+      <li><strong>Chlorine bleach on stainless.</strong> Chloride attacks the passive chromium oxide layer — pitting and permanent staining. You do not own bleach; keep it that way.</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <span class="label">PPE</span>
+    <ul>
+      <li>Nitrile gloves for all bathroom work, all balcony work, and any spill response. Removed and hands washed immediately after.</li>
+      <li>N95 for dusty jobs and any sanding.</li>
+      <li>Ventilation during oven cleaning, any percarbonate work, and all bathroom disinfection.</li>
+      <li>Never apply any product to skin, and never transfer product to an unlabelled container.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= FLOORS & WALLS ================= -->
+<section class="page" id="p-floors">
+  <div class="page-head">
+    <h2>Floors &amp; walls</h2>
+    <p class="sub">Laminate throughout the main areas, tile in the bathroom, painted drywall on the walls. Water tolerance differs enormously between them.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Laminate — whole apartment</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th></th></tr></thead>
+      <tbody>
+        <tr><td>Clean</td><td>Vacuum or dry microfiber first, always. Then a damp microfiber flat mop, a few drops of Dawn in warm water, wrung out hard. Mist the pad, never the floor.</td></tr>
+        <tr><td>Sanitize</td><td>Not needed. Floors are a dirty zone by definition; cleaning is sufficient.</td></tr>
+        <tr><td>Avoid</td><td>Wet mopping · steam · oil soaps · wax or polish · vinegar · abrasives</td></tr>
+        <tr><td>Why</td><td>The fibreboard core swells irreversibly at the seams. Oil soaps and polishes leave a film that cannot be removed and grows cloudier with each application.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>With no rugs, dust is the dominant soil, so the dry pass does most of the work. <strong>Two dry passes beat one damp one.</strong> Mop from clean zones toward contained ones and dry immediately.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Bathroom tile and grout</span>
+    <ul>
+      <li>Clear hair and debris dry, then wash with Dawn and warm water, then Bio Stain with dwell time.</li>
+      <li>Grout holds soil that tile does not — work it monthly with the detail brush. Percarbonate solution with a 15-minute dwell handles staining without bleach.</li>
+      <li>Avoid acidic cleaners on unsealed cement grout; they erode it over time.</li>
+      <li>Keep the vacuum's main head off the baseboards. Use the crevice tool.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Painted walls</span>
+    <p>Sheen decides what the paint tolerates. Test any method in a low-visibility area first, and wash bottom-up so streaks do not run into dry paint.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sheen</th><th>Typical location</th><th>Method</th></tr></thead>
+      <tbody>
+        <tr><td>Flat / matte</td><td>Ceilings, bedroom, living</td><td>Dry microfiber or a dry sponge only. Blot marks, never rub. Water burnishes matte paint into a permanent shiny patch.</td></tr>
+        <tr><td>Eggshell / satin</td><td>Hallways, high-traffic walls</td><td>Damp microfiber, very dilute Dawn. Light pressure, rinse cloth, dry at once.</td></tr>
+        <tr><td>Semi-gloss / gloss</td><td>Trim, doors, kitchen, bathroom</td><td>Soap and water freely; alcohol acceptable on switch plates and handles.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p><strong>No alcohol on flat or matte paint</strong> — it lifts pigment. Confirm the sheen in each room and this table becomes specific rather than general.</p>
+  </div>
+</section>
+
+<!-- ================= KITCHEN MATERIALS ================= -->
+<section class="page" id="p-kitchen-mat">
+  <div class="page-head">
+    <h2>Kitchen surfaces</h2>
+    <p class="sub">Granite, stainless, plastic liners and glass — four materials with four incompatible chemistries in one room.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Granite counters — dense, polished, sealed</span>
+    <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><td>Clean</td><td>Dawn + warm water, then buff dry with flat-weave microfiber</td></tr>
+        <tr><td>Sanitize</td><td>70% alcohol — no rinse, no residue, no fragrance</td></tr>
+        <tr><td>Avoid</td><td>Bar Keeper's Friend · Windex Vinegar · anything abrasive · leaving Bio Stain on it, since the low pH degrades sealer and it needs rinsing as food-contact anyway</td></tr>
+        <tr><td>Note</td><td>Buffing dry is not optional on dark polish — it is most of the visual result</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>All acids etch granite and strip sealer: vinegar, lemon, citric acid, acidic glass cleaners. Blot spills of oil, wine and citrus rather than wiping them across.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Stainless sink</span>
+    <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><td>Clean</td><td>Dawn daily. Bar Keeper's Friend weekly</td></tr>
+        <tr><td>Sanitize</td><td>Bio Stain, then rinse — food-contact</td></tr>
+        <tr><td>Technique</td><td>Work with the grain, never across. Rinse completely; residual oxalic acid discolours stainless. Dry after</td></tr>
+        <tr><td>Avoid</td><td>Chlorine bleach · steel wool · leaving cast iron or steel items in the basin, which causes iron-transfer rust spots that look like the sink is failing</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Rinse and dry after every wash. Standing water is what produces the spotting usually mistaken for staining. Clean the drain and strainer separately and treat them as the dirtiest point in the zone.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Fridge interior — plastic liner and gaskets</span>
+    <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><td>Clean</td><td>Dawn + warm water on a wrung cloth, then a clear-water wipe, then dry</td></tr>
+        <tr><td>Sanitize</td><td>Bio Stain only if genuinely needed — a raw meat leak. Full rinse after</td></tr>
+        <tr><td>Avoid</td><td><strong>Alcohol</strong> · bleach · abrasives · ammonia</td></tr>
+        <tr><td>Gaskets</td><td>Soap and water only, then dry. Alcohol and bleach both destroy the flexible seal</td></tr>
+        <tr><td>Odour</td><td>An open box of baking soda. Not a spray</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">Glass cooktop, backsplash, cabinet fronts</span>
+    <ul>
+      <li>Cooktop: detergent on a <em>warm, not hot</em> surface with a soft cloth; a dedicated ceramic scraper held near-flat for carbonized residue. No abrasives, no ammonia cleaner.</li>
+      <li>Backsplash and cabinet fronts: material not yet confirmed — see open items. Dawn on a damp cloth is safe on all likely candidates in the meantime.</li>
+      <li>Cabinet fronts at hand height are a real touchpoint and belong in the weekly disinfection pass.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= BATHROOM MATERIALS ================= -->
+<section class="page" id="p-bath-mat">
+  <div class="page-head">
+    <h2>Bathroom surfaces</h2>
+    <p class="sub">Fibreglass, vitreous china, plastic and chrome. The most and least tolerant materials in the apartment sit within a metre of each other.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Fibreglass / acrylic tub — the most fragile surface here</span>
+    <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><td>Clean</td><td>Dawn + soft cloth or soft nylon brush. Soap scum: percarbonate solution, 15-minute dwell, soft brush</td></tr>
+        <tr><td>Sanitize</td><td>Bio Stain, dwell per label, rinse</td></tr>
+        <tr><td>Avoid</td><td>Bar Keeper's Friend · any scouring powder · green scrub pads · acetone or solvents · very hot water</td></tr>
+        <tr><td>Why</td><td>Gelcoat is a thin surface layer. Once dulled it holds soil, which drives more scrubbing, which dulls it further</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Keeping the tub dry after use does more against mildew than anything applied afterwards. Silicone caulk lines get a soft brush and a dwell rather than scrubbing.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Porcelain sink and toilet bowl</span>
+    <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><td>Clean</td><td>Dawn daily; Bar Keeper's Friend when needed</td></tr>
+        <tr><td>Sanitize</td><td>Bio Stain</td></tr>
+        <tr><td>Avoid</td><td>Little to worry about — vitreous china is the toughest surface in the apartment. This is where Bar Keeper's Friend earns its keep</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">Plastic toilet seat, lid, hinges</span>
+    <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><td>Clean</td><td>Dawn + water</td></tr>
+        <tr><td>Sanitize</td><td>Bio Stain, wipe after contact time</td></tr>
+        <tr><td>Avoid</td><td><strong>Alcohol</strong> — repeated exposure crazes and whitens seat plastics · abrasives, which scratch and permanently trap soil · concentrated bleach, which embrittles hinges</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The post-toilet touchpoint wipe for handle and seat rim uses Bio Stain, not alcohol. Everything in this task uses disposable paper towel and goes straight to the bin.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Chrome fixtures</span>
+    <ul>
+      <li>Chrome is a thin plating over a softer base, and everything about its care follows from that.</li>
+      <li>Dawn on microfiber, rinse, dry to a shine. Drying is what keeps chrome looking maintained.</li>
+      <li>Alcohol is safe and effective for taps and handles.</li>
+      <li>Limescale: wrap in a cloth soaked in citric acid solution for no more than fifteen minutes, rinse thoroughly, dry. Prolonged acid contact damages the plating.</li>
+      <li>Avoid abrasives entirely. Scratches in chrome cannot be polished out.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Mirrors and glass</span>
+    <ul>
+      <li>Windex Vinegar on a flat-weave cloth, buffed dry.</li>
+      <li>Do not let liquid run to the bottom edge of a mirror — it wicks behind and damages the silvering permanently.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Drains and moisture control</span>
+    <ul>
+      <li>A hair catcher in the tub is the single highest-value object on the supply list.</li>
+      <li>Monthly: mechanical removal with the drain hook, then Bio-Clean overnight with no water use after.</li>
+      <li>Extractor fan cover removed and washed monthly where accessible. Confirm the fan actually moves air.</li>
+      <li>Descale the shower head with citric acid quarterly.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= BALCONY ================= -->
+<section class="page" id="p-balcony">
+  <div class="page-head">
+    <h2>Balcony</h2>
+    <p class="sub">Painted non-slip concrete, no drain, above a neighbouring space. The most constrained surface in the protocol.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Containment is a condition of the work</span>
+    <p>Introduce only the volume of solution a bucket can take back. Wring over the bucket, never over the edge. Carry wastewater indoors for disposal. Nothing is hosed, flooded or swept over the railing. Wash mats indoors or over the tub, never on the balcony itself.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Algae protocol — revised for paint</span>
+    <ol>
+      <li>Sweep completely dry first. Never wet-dust.</li>
+      <li>Move everything off — planters, mats, furniture. The algae reservoirs live underneath.</li>
+      <li><strong>Test first:</strong> percarbonate solution on a hidden corner, 20 minutes, check for paint softening or colour lift.</li>
+      <li>Mix at <strong>half strength</strong> — roughly ½ cup percarbonate per gallon of warm water.</li>
+      <li>Pre-wet, apply, dwell 20–30 minutes keeping the surface visibly wet.</li>
+      <li>Medium nylon brush. Not stiff, not wire.</li>
+      <li>Rinse thoroughly — residue in the non-slip texture reduces grip, which is the surface's actual job.</li>
+      <li>Squeegee toward the drain path. Bucket, not hose.</li>
+      <li>Leave damp rather than wet; let sun and air finish it.</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <span class="label">Droppings</span>
+    <p>Never dry-brush or sweep — it aerosolizes the material into your breathing zone. Moisten with detergent solution, cover with paper towel for five minutes, lift and seal in a bag, then disinfect and observe the dwell interval. Gloves throughout.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Avoid</span>
+    <ul>
+      <li>Pressure washing — strips paint from concrete</li>
+      <li>Chlorine bleach — runoff onto neighbours and plants</li>
+      <li>Wet &amp; Forget — leaves a residue film on a surface whose entire job is traction</li>
+      <li>Solvents, stiff brushes, wire brushes</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Between treatments</span>
+    <p>Algae returns every wet season. Reduce the recurrence rather than fighting it: keep the drain path clear, get planters and mats onto risers so air moves underneath, and leave nothing sitting flat through the wet months.</p>
+    <p>Balcony dust is unwinnable and not worth fighting. The balcony is a transition zone — its job is to stop dust migrating inward, not to be clean itself.</p>
+  </div>
+</section>
+
+<!-- ================= SOFT ================= -->
+<section class="page" id="p-soft">
+  <div class="page-head">
+    <h2>Textiles, books, fixtures</h2>
+    <p class="sub">The reservoirs that hold the most and tolerate the least.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Textiles</span>
+    <ul>
+      <li>Bedding weekly, at the highest temperature the label tolerates.</li>
+      <li>All apartment textiles — curtains, cushion covers, throws, bath mats — laundered during the monthly deep clean.</li>
+      <li>Cleaning cloths and mop pads laundered by zone colour, hot, separately from household textiles, <strong>never with fabric softener</strong>.</li>
+      <li>Rehang curtains slightly damp so creases fall out without pressing.</li>
+      <li>Dry everything completely before storage.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Upholstered light fixtures — living room and kitchen</span>
+    <ul>
+      <li>Switch off at the wall and let the fixture cool fully before touching it.</li>
+      <li>Vacuum with the upholstery brush at reduced suction, working in one direction. In most months this is the entire routine.</li>
+      <li>Spot-treat with the minimum moisture that will work: a barely damp cloth, blotting from outside the mark inward. Do not saturate — water marks on fabric shades leave a tide line that is difficult to reverse.</li>
+      <li>The kitchen fixture accumulates airborne grease. Address it more often rather than more aggressively; grease that has aged into fabric does not come out.</li>
+      <li><strong>Never apply alcohol or any solvent to a fabric shade.</strong></li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Bookshelves and rare books</span>
+    <p class="sub-note">The most conservative protocol in the apartment</p>
+    <ul>
+      <li><strong>Never apply liquid of any kind to a book.</strong> No alcohol, no soap, no proprietary leather dressing without specific advice for that binding.</li>
+      <li>Dust with the book <em>closed and held firmly shut</em>, working from the spine outward toward the fore-edge, so dust is carried away from the text block rather than into it.</li>
+      <li>Use a soft natural-bristle brush, or the vacuum on its lowest setting with fine mesh or cheesecloth secured over the nozzle to catch anything that lifts free.</li>
+      <li>Remove books in sections, dust the shelf with a barely damp cloth, and let it dry completely before the books return.</li>
+      <li>Remove a book by gripping the middle of the spine, never by hooking the headcap — that is the commonest cause of damage to older bindings.</li>
+      <li>Keep the collection out of direct sun, off exterior walls, and away from the balcony door. Stable humidity matters more than any cleaning step.</li>
+      <li>Inspect annually for foxing, mould odour and insect activity. Anything showing active mould or pest damage is isolated immediately and assessed before further handling.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Electronics and screens</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Surface</th><th>Clean</th><th>Avoid</th></tr></thead>
+      <tbody>
+        <tr><td>Keyboard, mouse, remote</td><td>70% alcohol <strong>on the cloth</strong></td><td>Spraying the device directly</td></tr>
+        <tr><td>Screens</td><td>Dry flat-weave microfiber only</td><td>Alcohol, Windex, anything wet</td></tr>
+        <tr><td>Cords, desk underside</td><td>Damp cloth or alcohol on cloth</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RANGE ================= -->
+<section class="page" id="p-range">
+  <div class="page-head">
+    <h2>Frigidaire glass-top range</h2>
+    <p class="sub">Ceramic glass cooktop · enamel oven cavity. Weekly cooktop, monthly cavity.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Cooktop</span>
+    <ol>
+      <li>Confirm the surface is cool, or at most warm. Cleaning a hot ceramic top can etch it permanently and flash-dries product into a residue that bakes on.</li>
+      <li>Clear loose debris dry.</li>
+      <li>Dawn and warm water on a soft cloth for routine soil; a ceramic cooktop cream for anything that resists.</li>
+      <li>For carbonized deposits, a dedicated ceramic scraper held near-flat, roughly 30 degrees, on a surface wet with product. Never scrape dry, never at a steep angle, never over the printed control markings.</li>
+      <li>Buff dry, then disinfect with alcohol as a food-adjacent surface.</li>
+    </ol>
+    <p><strong>Avoid:</strong> abrasive powders, scouring pads, ammonia-based glass cleaner, Bar Keeper's Friend.</p>
+    <div class="card warn">
+      <span class="label">Exception to the cool-surface rule</span>
+      <p>Sugar and sugar-containing spills are scraped off <em>while the surface is still hot</em>, using a heat-resistant tool. Sugar bonds to hot ceramic glass and pits it permanently on cooling. This is the one case where waiting causes the damage.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">Oven cavity — monthly</span>
+    <ol>
+      <li>Remove the racks and wash them separately. If washing in the tub, protect the gelcoat with a towel first.</li>
+      <li>Clear loose debris and carbon flakes from the cavity floor.</li>
+      <li>Apply oven cleaner per label with the door open and ventilation running. This is the one kitchen task using disposable paper towel, for both application and removal.</li>
+      <li>Wipe out completely, then rinse with clear water on fresh towel until no product remains. Residue produces fumes on the next heat cycle.</li>
+      <li>Door glass: Dawn and water on a cloth. Keep cleaner out of the vent slots at the base of the door.</li>
+    </ol>
+    <p>If the unit has a self-clean cycle, it is an <em>alternative</em> to chemical cleaning, never a follow-up to it. Remove racks unless the manual says they are self-clean safe, and ventilate throughout.</p>
+  </div>
+</section>
+
+<!-- ================= FRIDGE ================= -->
+<section class="page" id="p-fridge">
+  <div class="page-head">
+    <h2>Electrolux stainless refrigerator</h2>
+    <p class="sub">Stainless exterior · plastic and glass interior · monthly, with quarterly coil service.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Two absolute rules</span>
+    <p><strong>No alcohol inside</strong> — it causes stress cracking in the liner and dries out the gaskets. <strong>No chlorine bleach on the exterior</strong> — chloride pits stainless irreversibly.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Exterior</span>
+    <ul>
+      <li>Work along the grain of the steel, never across and never in circles.</li>
+      <li>Dawn and warm water on damp microfiber; a second cloth with clean water; a third dry cloth to buff.</li>
+      <li>The handle is among the highest-touch points in the kitchen — disinfect it after washing.</li>
+      <li>No abrasive pads, no steel wool, no glass cleaner on a brushed finish.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Interior — monthly</span>
+    <ul>
+      <li>Empty one shelf at a time so contents stay cold.</li>
+      <li>Remove glass shelves and let them reach room temperature before washing — cold glass in hot water cracks.</li>
+      <li>Dawn and warm water, or baking soda in warm water for odour. Rinse, then dry.</li>
+      <li>Disinfect only where genuinely indicated, such as a raw meat leak: wash first, Bio Stain, full rinse.</li>
+      <li>Gaskets: fold back the flexible lip and clean the channel with soapy water on a cloth or soft brush, then dry thoroughly. A dirty or dried-out gasket is the usual cause of a poor seal.</li>
+      <li>Crisper drawers removed, washed, dried completely before returning.</li>
+      <li>An open box of baking soda for odour, replaced quarterly. Not a spray.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Quarterly</span>
+    <ul>
+      <li>Pull the unit out; vacuum the condenser coils and the floor beneath with a brush attachment.</li>
+      <li>Clean the drip pan if accessible.</li>
+      <li>Confirm the drain hole at the back of the cabinet is clear.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= DISHWASHER ================= -->
+<section class="page" id="p-dishwasher">
+  <div class="page-head">
+    <h2>Bosch dishwasher</h2>
+    <p class="sub">Stainless interior · weekly filter check, monthly service.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Filter — the single most important task</span>
+    <ol>
+      <li>Remove the lower rack. Twist the cylindrical fine filter counter-clockwise and lift it out together with the flat mesh filter beneath.</li>
+      <li>Rinse both under running water; soft brush and a little Dawn on the mesh. <strong>Never a wire brush</strong> — it damages the mesh and the sealing surface.</li>
+      <li>Wipe the sump recess clear of debris and glass fragments before reseating.</li>
+      <li>Refit the flat filter first, then lock the cylinder clockwise until it seats. An unseated filter recirculates soil and is the usual cause of poor wash results and odour.</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <span class="label">Spray arms — monthly</span>
+    <ul>
+      <li>Detach upper and lower arms, check each jet for blockage, clear with a toothpick or thin wire.</li>
+      <li>Rinse, refit, confirm they rotate freely.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Interior and door — monthly</span>
+    <ul>
+      <li>Wipe the door gasket and the channel it sits in — this is where biofilm and odour concentrate. Dry after wiping.</li>
+      <li>Clean the detergent dispenser flap and the door edge above the gasket, which the wash cycle never reaches.</li>
+      <li>Run an empty hot cycle with citric acid solution for limescale and residue. <strong>No chlorine bleach in a stainless interior.</strong></li>
+      <li>Leave the door ajar after each cycle. Bosch condensation-drying models hold moisture longer than heated-dry machines, which makes this more important, not less.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Exterior</span>
+    <ul>
+      <li>Stainless front along the grain, as with the fridge.</li>
+      <li>Handle and control panel disinfected with alcohol on microfiber — a genuine touchpoint.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= WASHER ================= -->
+<section class="page" id="p-washer">
+  <div class="page-head">
+    <h2>Blomberg washing machine</h2>
+    <p class="sub">Front loading. Attention after every load; service monthly.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Why this matters more than it looks</span>
+    <p>A washer harbouring biofilm recontaminates every textile passed through it, including the cleaning cloths the whole zoning system depends on. This appliance sits upstream of the entire protocol.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">After every load</span>
+    <ul>
+      <li>Wipe the door gasket dry. Fold back the rubber lip and remove trapped water, lint and objects.</li>
+      <li>Leave the door and the dispenser drawer ajar. Front loaders develop odour and mould at the gasket almost entirely because they are closed while damp.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Weekly</span>
+    <ul>
+      <li>Remove the dispenser drawer entirely; wash it and its housing with warm soapy water and a soft brush; dry and refit.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Monthly</span>
+    <ul>
+      <li>Run a tub-clean or the hottest available cycle with citric acid solution, drum otherwise empty. No detergent.</li>
+      <li>Open the drain pump filter at the base — place a shallow tray and towel first, as it holds standing water. Unscrew, clear lint and debris, rinse, reseat squarely so it seals.</li>
+      <li>Wipe exterior, control panel and door glass; alcohol on the handle and controls.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Avoid</span>
+    <ul>
+      <li><strong>Excess detergent</strong> — the leading cause of residue and odour in front loaders. Use less than feels right.</li>
+      <li>Chlorine bleach on the gasket — degrades the rubber and shortens its life.</li>
+      <li>Fabric softener on anything, and on microfiber above all.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= DRYER ================= -->
+<section class="page" id="p-dryer">
+  <div class="page-head">
+    <h2>Blomberg dryer</h2>
+    <p class="sub">Front loading. Every load, plus a monthly service.</p>
+    <hr>
+  </div>
+
+  <div class="card flag">
+    <span class="label">Every load, without exception</span>
+    <p>Clear the lint filter by hand. This is a fire-prevention task, not a performance one, and it is the only step in this document with that character.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Monthly</span>
+    <ul>
+      <li>Wash the lint filter in warm soapy water with a soft brush. Fabric softener and dryer sheets leave an invisible film that restricts airflow — this is why a filter that looks clear can still be blocked.</li>
+      <li>Dry the filter completely before refitting.</li>
+      <li>Vacuum the filter housing with the crevice tool.</li>
+      <li>Wipe the drum with a cloth dampened with water only, or alcohol if residue is present, and leave the door open until dry.</li>
+      <li>Exterior and controls as with the washer.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Depending on model type</span>
+    <ul>
+      <li><strong>Heat pump or condenser:</strong> empty the water reservoir after each load; remove and rinse the condenser unit monthly per the manual. A clogged condenser presents as long drying times before it presents as anything else.</li>
+      <li><strong>Vented:</strong> disconnect and clear the duct at least annually; confirm the exterior vent flap moves freely.</li>
+    </ul>
+    <p>Confirm which type this unit is and delete the other line — it changes the monthly task list materially.</p>
+  </div>
+</section>
+
+<!-- ================= TIMER ================= -->
+<section class="page" id="p-timer">
+  <div class="page-head">
+    <h2>Contact-time timer</h2>
+    <p class="sub">Apply the disinfectant, start the interval, and leave the surface visibly wet until it completes.</p>
+    <hr>
+  </div>
+
+  <div class="timer">
+    <div class="dial" id="dial"><span id="dialRead">1:00</span></div>
+    <div class="timer-ctl">
+      <div class="seg" role="group" aria-label="Interval">
+        <button data-secs="30" aria-pressed="false">30 s</button>
+        <button data-secs="60" aria-pressed="true">1 min</button>
+        <button data-secs="120" aria-pressed="false">2 min</button>
+        <button data-secs="300" aria-pressed="false">5 min</button>
+      </div>
+      <div style="display:flex;gap:.6rem">
+        <button class="btn" id="dialStart">Start</button>
+        <button class="btn" id="dialReset">Reset</button>
+      </div>
+      <p id="dialNote" style="margin:0;font-size:.9rem;color:var(--accent);max-width:22rem">The label interval on the product in use takes precedence over any value shown here.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">Reference intervals</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Agent</th><th>Stays visibly wet</th><th>Then</th></tr></thead>
+      <tbody>
+        <tr><td>70% isopropyl</td><td>30 seconds</td><td>Air dry; do not buff off</td></tr>
+        <tr><td>Bio Stain</td><td>30 s – 1 min per label</td><td>Wipe residue; rinse if food-contact</td></tr>
+        <tr><td>Percarbonate soak</td><td>15–30 minutes</td><td>Agitate, rinse thoroughly</td></tr>
+        <tr><td>Citric acid descale</td><td>15 minutes maximum on chrome</td><td>Rinse fully, dry</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>If the surface dries before the interval elapses, the contact time was not achieved. Reapply once and let it sit — do not simply wipe and move on.</p>
+  </div>
+</section>
+
+<!-- ================= CRITERIA ================= -->
+<section class="page" id="p-criteria">
+  <div class="page-head">
+    <h2>Completion criteria</h2>
+    <p class="sub">A phase is complete when these conditions are met. Work beyond them is outside the protocol.</p>
+    <hr>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="label">Air</span>
+      <p>Odour-neutral. No detectable residue from cleaning agents.</p>
+    </div>
+    <div class="card">
+      <span class="label">Surfaces</span>
+      <p>Dry to the touch, not tacky. No visible soil in the zones this phase addressed.</p>
+    </div>
+    <div class="card">
+      <span class="label">Equipment</span>
+      <p>Cloths in laundry, brushes rinsed and drying bristles down, decant bottles closed and labelled, balcony wastewater disposed of indoors.</p>
+    </div>
+    <div class="card">
+      <span class="label">Reservoirs</span>
+      <p>No visible accumulation in the concealed areas scheduled for this phase. Textiles laundered and returned, curtains rehung.</p>
+    </div>
+    <div class="card">
+      <span class="label">Handover</span>
+      <p>The next session has a defined starting point, recorded in one line.</p>
+    </div>
+    <div class="card">
+      <span class="label">Effort</span>
+      <p>The allotted interval has elapsed. Stopping on time counts as adherence, not as an incomplete result.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESCALATION ================= -->
+<section class="page" id="p-escalation">
+  <div class="page-head">
+    <h2>Illness &amp; spills</h2>
+    <p class="sub">Escalation and de-escalation, adapted from clinical outbreak procedure. Temporary by design.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">When someone in the household is unwell</span>
+    <ul>
+      <li>Touchpoint disinfection moves from weekly to <strong>twice daily</strong>: door handles, light switches, taps, flush handle, fridge handle, kettle, remotes, phone.</li>
+      <li>The bathroom is cleaned daily rather than weekly, with full dwell time observed on every surface.</li>
+      <li>Hand towels become single-user or are replaced with paper. Bath and hand towels laundered daily.</li>
+      <li>Waste from the unwell person's room is bagged and closed before it leaves the room.</li>
+      <li>Bedding laundered on the hottest cycle the fabric tolerates, and not shaken out before it goes in — shaking aerosolizes.</li>
+      <li>Ventilate every room daily for five to ten minutes.</li>
+      <li>Where an actual kill claim matters — gastrointestinal illness above all — check the Bio Stain label for the specific organism, and observe the longer dwell time it states for that claim rather than the general one.</li>
+    </ul>
+    <p><strong>De-escalate</strong> 48 hours after symptoms resolve: one full weekly reclean at escalated thoroughness, then return to the standard cadence. Escalation is temporary by design — an indefinite one becomes the new baseline and is not sustainable.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Spill response — blood, vomit, or other body fluids</span>
+    <ol>
+      <li>Gloves on before anything else. Ventilate.</li>
+      <li>Contain the area. Keep others out of it.</li>
+      <li>Absorb and remove visible matter with disposable material working <em>inward</em> from the edges, so the spill is not spread outward.</li>
+      <li>Seal that material in a bag immediately and close it.</li>
+      <li>Clean the area with detergent.</li>
+      <li>Disinfect, keeping the surface visibly wet for the full label interval.</li>
+      <li>Dispose of gloves, then wash hands for at least 20 seconds.</li>
+      <li>Anything reusable that contacted the spill is laundered hot and separately, or discarded.</li>
+    </ol>
+    <p>Never dry-wipe or sweep a dried deposit — wet it first. On laminate, work quickly and dry the area completely; the water rule still applies during a spill response.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Waste</span>
+    <ul>
+      <li>Bins are among the highest bioburden items in the apartment and belong in the weekly pass, including the inner rim under the liner.</li>
+      <li>Liners closed before removal, not carried open through clean zones.</li>
+      <li>Kitchen and bathroom bins are separate and their contents never combined indoors.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= SUPPLIES ================= -->
+<section class="page" id="p-supplies">
+  <div class="page-head">
+    <h2>Supply list</h2>
+    <p class="sub">Everything needed, nothing that isn't. Roughly $150 all-in, most of it lasting years.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Already owned — buy nothing</span>
+    <p>Dawn · 70% isopropyl · Clorox Bio Stain · Tide Free &amp; Clear · Windex Vinegar · Bar Keeper's Friend · microfiber flat mop and pads · colour-coded microfiber cloths · vacuum. That is a complete cleaning chemistry set.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Buy once — chemicals</span>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Item</th><th>Size</th><th>Job</th><th>Approx.</th></tr></thead>
+      <tbody>
+        <tr><td>Sodium percarbonate</td><td>1 kg</td><td>Balcony algae, tub soap scum, cloth refresh, grout</td><td>$10–15</td></tr>
+        <tr><td>Citric acid</td><td>500 g</td><td>Kettle, shower head, aerators, appliance descaling</td><td>$3–5</td></tr>
+        <tr><td>Bio-Clean</td><td>2 lb</td><td>Monthly drain maintenance, ~100 treatments</td><td>$35–55</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Buy small on the first two. Percarbonate is hygroscopic and loses active oxygen; citric acid you will barely touch given Vancouver's water. A large sack is cheap per kilo and dead before you use it.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Buy once — tools</span>
+    <h3>Brushes — each dedicated, none cross zones</h3>
+    <ul>
+      <li>Soft nylon brush — fibreglass tub. Soft; anything stiffer dulls gelcoat permanently</li>
+      <li>Medium nylon deck brush, long handle — painted balcony. Medium, not stiff, not wire</li>
+      <li>Toilet brush and holder — lives in the bathroom permanently</li>
+      <li>Small detail brush — grout, tap bases, drain covers. An old toothbrush works</li>
+    </ul>
+    <h3>General</h3>
+    <ul>
+      <li>Spray bottles ×4, labelled: Bio Stain / alcohol / percarbonate / plain water</li>
+      <li>Mist bottle for the mop — mist the pad, never the floor</li>
+      <li>Cleaning caddies ×2 minimum — one kitchen, one bathroom, neither travels</li>
+      <li>Nitrile gloves · N95 masks</li>
+      <li>Extendable microfiber duster — vents, ceiling corners, high edges</li>
+      <li>Flat-weave microfiber ×3 — glass, screens, granite buffing</li>
+      <li>Replacement mop pads, 4–6 total</li>
+    </ul>
+    <h3>Balcony and drains</h3>
+    <ul>
+      <li>Stiff outdoor broom — the dry sweep is the most important step</li>
+      <li>Bucket · rubber squeegee, medium — doubles for shower glass</li>
+      <li><strong>Hair catcher for the tub</strong> — the highest value per dollar on this list</li>
+      <li>Plastic drain hook for monthly mechanical removal</li>
+    </ul>
+    <h3>Vacuum</h3>
+    <p>Confirm the crevice tool and brush attachment are present and in use. Edges are where dust actually lives given laminate floors and no rugs, and driving the main head into baseboards is what damaged the bathroom MDF.</p>
+  </div>
+
+  <div class="block">
+    <span class="label">Order, if spreading it out</span>
+    <ol>
+      <li>Hair catcher and drain hook — a few dollars, highest impact per dollar here</li>
+      <li>Spray bottles, gloves, soft tub brush — makes the current protocol work properly</li>
+      <li>Percarbonate, deck brush, broom, bucket — unlocks the balcony</li>
+      <li>Bio-Clean and citric acid — monthly and quarterly maintenance</li>
+      <li>Baseboard repair kit — whenever you are ready</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <span class="label">One-time repair kit — bathroom baseboard</span>
+    <p class="sub-note">Separate from cleaning. Buy only when tackling it.</p>
+    <ul>
+      <li>100% silicone sealant and caulk gun — <strong>not</strong> acrylic latex, which is what failed</li>
+      <li>PVC quarter-round or shoe moulding — covers the damage, seals the floor junction, and becomes the sacrificial layer the vacuum hits</li>
+      <li>Shellac or oil-based primer (BIN, Kilz Original) — <strong>never water-based on raw MDF</strong></li>
+      <li>Two-part filler, not lightweight spackle</li>
+      <li>Penetrating wood hardener if the fibre is crumbling</li>
+      <li>Utility knife, putty knife, sandpaper, N95</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= OPEN ================= -->
+<section class="page" id="p-open">
+  <div class="page-head">
+    <h2>Open items</h2>
+    <p class="sub">Gaps recorded rather than left implicit. Filling these completes the material matrix.</p>
+    <hr>
+  </div>
+
+  <div class="block">
+    <span class="label">Materials to confirm</span>
+    <ul>
+      <li>Shower surround — tile, acrylic panel, or fibreglass? Glass door or curtain?</li>
+      <li>Bathroom floor and wall finishes.</li>
+      <li>Kitchen backsplash and cabinet fronts — painted, thermofoil, melamine, or real wood?</li>
+      <li>Wall paint sheen in each room, so the wall table becomes specific.</li>
+      <li>Fixture finishes beyond chrome — brushed, matte black and living finishes are far less forgiving.</li>
+      <li>Any unsealed or oiled wood: cutting boards, furniture.</li>
+      <li>Upholstery fibre, including the light fixture shades.</li>
+      <li>Coated cookware — cast iron, non-stick.</li>
+      <li>Dryer type: heat pump, condenser, or vented.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <span class="label">Health and building factors</span>
+    <ul>
+      <li>Asthma or respiratory sensitivity · fragrance sensitivity · skin reactivity.</li>
+      <li>Pets · plants, including whether balcony washing affects them.</li>
+      <li>Whether the bathroom extractor fan actually works.</li>
+      <li>Whether the kitchen hood vents outside or recirculates — it changes the grease load on the fixture and cabinet fronts substantially.</li>
+      <li>Air purifier or HVAC filter type and replacement schedule.</li>
+      <li>Building rules on balcony water and drainage.</li>
+    </ul>
+    <div class="card warn">
+      <p>The Bio Stain is fragranced. If fragrance is an issue, that is the one product in the kit that needs replacing, and it is worth knowing before committing to it — the whole protocol is built around it as the working disinfectant.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <span class="label">Not yet documented</span>
+    <ul>
+      <li>Range hood filter — degreasing method and interval.</li>
+      <li>Windows, tracks and the balcony door threshold.</li>
+      <li>Microwave and small appliance interiors.</li>
+      <li>Cabinet interiors and pantry.</li>
+      <li>Wood furniture and its finish type.</li>
+    </ul>
+  </div>
+
+  <p class="footnote">This document adapts clinical infection-prevention principles — cleaning before disinfection, zoning, single-zone equipment, observed contact time, defined completion criteria — to a domestic environment. It is not a substitute for regulated healthcare cleaning standards and does not address settings in which clinical care is delivered. Product label instructions and safety data sheets govern all agent use. Where a manufacturer's manual disagrees with this document, follow the manual and amend this document.</p>
+</section>
+
+</main>
+</div>
+
+<script>
+/* ---------------- checklist data ---------------- */
+const LISTS = {
+  daily: [
+    { t:"0–3", h:"Work containment", why:"Equivalent to removing gloves and coat at the end of a shift.",
+      items:["Shut down the workstation","Return tools to storage at a functional standard, not a perfect one","Record one line: the next session begins with —"] },
+    { t:"3–6", h:"Touchpoint pass, one zone", why:"Whichever clean zone you used most today — ordinarily the kitchen or studio.",
+      items:["Alcohol on the cloth, one agent only","Counter section used, tap handle, keyboard or remote, the switch touched repeatedly","One cloth, one pass, no revisiting"] },
+    { t:"6–9", h:"Kitchen containment seal", why:"Organic matter is not left exposed overnight.",
+      items:["Dishes to the dishwasher, or rinsed and stacked — nothing left soaking","Food sealed and stored","Waste closed","Sink cleared, washed, dried"] },
+    { t:"9–11", h:"Studio closure", why:"Returns the space to a neutral baseline before the next session.",
+      items:["Clear notes and session materials","Reset seating and cushions","Place one intentional object","Shift lighting from overhead to lamp"] },
+    { t:"11–13", h:"Transition sweep", why:"Prevents overnight migration of soil from the entry inward.",
+      items:["Footwear returned to the entry or balcony","Bag emptied or hung, outerwear aired","Wipe only where soil is visible"] },
+    { t:"13–15", h:"Handwash and closing cue", why:"A defined endpoint replaces the option of continuing.",
+      items:["Cloths used today to laundry or the drying zone","Warm handwash, 20–30 seconds, dried thoroughly","One consistent cue: change clothing, make tea, or step outside briefly"] }
+  ],
+  weekly: [
+    { t:"7 min", h:"Sleeping area", why:"Risk profile: dust mites, skin lipids, allergens. Air quality outweighs disinfection here.",
+      items:["Strip and launder bedding at the highest tolerated temperature","Dust top to bottom — fixture, shelf tops, headboard, nightstand","Vacuum floor including under the bed","Alcohol to switches, handles, nightstand"] },
+    { t:"7 min", h:"Living area", why:"Risk profile: dust load and shared high-touch surfaces. Upholstery acts as a reservoir.",
+      items:["Dry dust first, then vacuum, then spot clean","Remotes, armrests, tables, light switches, door frames","Alcohol applied to the cloth, never directly to electronics"] },
+    { t:"5 min", h:"Office and studio", why:"Risk profile: hand-to-face contact and accumulated working material.",
+      items:["Alcohol wipe to keyboard, mouse, tablet, chair arms","Dry flat-weave for screens and documents","Clear the desk to its defined baseline"] },
+    { t:"9 min", h:"Entry and balcony", why:"Transition zone with continuous deposition. No drain, so every litre introduced must be removed by hand.",
+      items:["Gloves on. Dry sweep loose grit into a dustpan and bag it — do not hose or flood","Droppings: moisten, cover five minutes, lift, bag, then disinfect with dwell. Never dry-brush","Work in sections with a brush and a cloth wrung out over the bucket","Door track, railing top and underside, exterior handle, footwear storage","Entry: floor, door handle, deadbolt, switch, intercom","Carry wastewater indoors. Leave the surface damp, not wet"] },
+    { t:"12 min", h:"Kitchen", why:"Risk profile: foodborne transmission and cross-contamination. Highest-priority zone.",
+      items:["Clear surfaces completely","Wash counters with Dawn and hot water; rinse the cloth","Disinfect food-contact surfaces and hold visibly wet for the label interval","Tap, fridge handle and seal edge, oven and cooktop controls, cabinet fronts at hand height","Glass cooktop: Dawn on a warm not hot surface, soft cloth, no abrasives","Cutting boards: wood by hand and air-dried upright; plastic to the dishwasher","Sink last — treat it as a contained item. Bar Keeper's Friend, with the grain, rinse fully"] },
+    { t:"12 min", h:"Bathroom", why:"Risk profile: enteric organisms, mould, persistent moisture. Cleaned last.",
+      items:["Gloves on, ventilation running","Detergent pass first, then Bio Stain with dwell time","Fixture and mirror, shelves, tap and sink, shower controls, switches, door handle","Tub: soft cloth or soft brush only — no abrasives on gelcoat","Toilet last, paper towel only. Seat and handle get Bio Stain, not alcohol","Floor to finish. Equipment stays in the room"] },
+    { t:"8 min", h:"Floors and equipment reset", why:"Floors follow all surface work. Equipment is reprocessed so it does not become a source.",
+      items:["Vacuum throughout including edges with the crevice tool","Damp mop from clean zones toward contained zones — mist the pad, never the floor","Separate detergent and rinse water; wring before re-dipping","Dry laminate immediately","All cloths and mop pads to laundry; dry fully before reuse"] },
+    { t:"—", h:"Appliance touchpoints", why:"Short tasks that prevent long ones later.",
+      items:["Dishwasher filter checked and rinsed","Washer dispenser drawer removed, washed, dried","Washer gasket wiped dry; door and drawer left ajar","Bins washed including the inner rim"] }
+  ],
+  monthly: [
+    { t:"20 min", h:"Textile cycle — all fabrics", why:"The largest reservoir in the residence. Starting here lets the machines run while other zones are worked.",
+      items:["Curtains from every room, checked against care labels first","Throws, cushion covers, bath mats, mattress pad, pillow protectors","Cleaning cloths and mop pads, hot and separate from household textiles","Highest temperature the label tolerates; do not overload the drum","Rehang curtains slightly damp so creases fall out without pressing","Clear the dryer lint trap between every load"] },
+    { t:"15 min", h:"Air systems, all zones", why:"Airborne particulate redistributes contamination across zones already cleaned. Run this while curtains are down.",
+      items:["Vacuum baseboards, vents, window sills, curtain rails and tracks","Ventilate each room five to ten minutes","Replace purifier or HVAC filter if due; run purification afterwards"] },
+    { t:"20 min", h:"Kitchen — biofilm and appliance interfaces", why:"Grease plus moisture supports microbial persistence at concealed edges.",
+      items:["Fridge: gasket folds, handle, interior shelves, rear drip channel, crisper drawers","Oven cavity: manufacturer method, paper towel, ventilation running. Door glass and seal","Cooktop: Dawn on a warm surface, then ceramic scraper held flat for residue","Dishwasher: filter, spray arms, gasket channel, empty hot cycle with citric acid","Kettle and coffee maker descaled with citric acid; rinse twice, discard the first boil","Range hood filter degreased","Waste and compost bins including the inner rim"] },
+    { t:"10 min", h:"Laundry appliances", why:"A washer harbouring biofilm recontaminates every textile passed through it, including the cleaning cloths.",
+      items:["Washer: gasket fold, dispenser drawer, drain pump filter — tray and towel ready","Empty hot maintenance cycle with citric acid, no detergent","Door and drawer left ajar","Dryer: lint filter washed and dried fully; housing vacuumed","Condenser rinsed, or exhaust duct inspected, depending on model","Wipe both exteriors and control panels"] },
+    { t:"15 min", h:"Bathroom — moisture control", why:"Standing moisture supports mould and biofilm in concealed fittings.",
+      items:["Grout worked with the detail brush; percarbonate dwell where stained","Drain covers off; mechanical removal with the hook, then Bio-Clean overnight with no water use after","Extractor fan cover removed and washed where accessible","Shower head and taps descaled with citric acid","Bio Stain with dwell, then scrub, then full drying with ventilation","Inspect caulking and the baseboard junction"] },
+    { t:"12 min", h:"Sleeping area — allergen load", why:"Skin cells and dust accumulate where the weekly pass does not reach.",
+      items:["Vacuum the mattress surface; rotate","Under-bed area and closet floor perimeter","Wash the floor — the one wet task in this zone","Remake with textiles returned from the cycle above"] },
+    { t:"10 min", h:"Living area — upholstery and electronics", why:"Seams and device surfaces are the reservoirs a weekly pass does not reach.",
+      items:["Vacuum couch and chair seams","Upholstered light fixtures: power off, cool, upholstery brush at reduced suction","Alcohol on cloth for remotes, lamps, switches","Dry dust to all raised surfaces"] },
+    { t:"10 min", h:"Bookshelves", why:"The most conservative task in the protocol, and the one most easily done wrong.",
+      items:["Books out in sections, held closed, dusted spine outward with a soft brush","Shelf wiped with a barely damp cloth and dried completely before books return","No liquid on any book, ever","Note any foxing, mould odour or insect activity"] },
+    { t:"8 min", h:"Office and studio", why:"Working surfaces accumulate both particulate and inactive material.",
+      items:["Keyboard, mouse, tablet, cords, underside edge of the desk","Dry flat-weave for documents and screens","Remove materials no longer in use"] },
+    { t:"10 min", h:"Balcony — full-surface reset", why:"The weekly pass holds the surface steady; this one reaches into the non-slip texture.",
+      items:["Dry sweep first and bag the sweepings","Everything moved off, including planters and mats","Section by section with the deck brush, Dawn or half-strength percarbonate, and a bucket","Railing top, underside and posts; door frame and track; exterior wall at splash height","Carry all wastewater indoors. Nothing leaves over the edge","Mats washed indoors or over the tub, never on the balcony","Everything returned onto risers; nothing sitting flat"] },
+    { t:"5 min", h:"Equipment rotation", why:"The tools become a source if they are not themselves reprocessed.",
+      items:["Decant bottles emptied, washed, refilled, relabelled with the date","Brushes disinfected and dried bristles down","Vacuum filter inspected","Cloth inventory checked — replace anything matted or thinning"] }
+  ]
+};
+
+/* ---------------- navigation ---------------- */
+const navBtns = [...document.querySelectorAll(".nav-item")];
+const pages = [...document.querySelectorAll(".page")];
+
+function show(id, push){
+  pages.forEach(p => p.hidden = (p.id !== "p-" + id));
+  navBtns.forEach(b => b.setAttribute("aria-current", String(b.dataset.page === id)));
+  document.body.classList.remove("nav-open");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+  if (push !== false) { try { history.replaceState(null,"","#"+id); } catch(e){} }
+}
+navBtns.forEach(b => b.addEventListener("click", () => show(b.dataset.page)));
+
+document.getElementById("menuBtn").addEventListener("click", (e) => {
+  const open = document.body.classList.toggle("nav-open");
+  e.currentTarget.setAttribute("aria-expanded", String(open));
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") { document.body.classList.remove("nav-open"); }
+});
+
+/* ---------------- persistence ---------------- */
+const KEY = "clinical-reset-v2";
+function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+function save(s){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
+
+/* period stamps — checklists clear themselves when the interval rolls over */
+function stamp(kind){
+  const d = new Date();
+  if (kind === "daily") return d.toISOString().slice(0,10);
+  if (kind === "weekly"){
+    const t = new Date(d); t.setDate(t.getDate() - ((t.getDay()+6)%7));
+    return "w" + t.toISOString().slice(0,10);
+  }
+  return "m" + d.getFullYear() + "-" + (d.getMonth()+1);
+}
+
+let store = load();
+
+/* ---------------- checklist rendering ---------------- */
+document.querySelectorAll(".checklist").forEach(ul => {
+  const kind = ul.dataset.list;
+  const data = LISTS[kind];
+  const panel = ul.closest(".page");
+  const bar = panel.querySelector(".track i");
+  const count = panel.querySelector(".count");
+  const resetBtn = panel.querySelector("[data-reset]");
+
+  if (!store[kind] || store[kind].stamp !== stamp(kind)){
+    store[kind] = { stamp: stamp(kind), done: data.map(()=>false) };
+    save(store);
+  }
+  if (store[kind].done.length !== data.length){
+    store[kind].done = data.map((_,i)=> store[kind].done[i] || false);
+  }
+
+  data.forEach((s,i) => {
+    const li = document.createElement("li");
+    li.innerHTML =
+      '<label class="chk"><input type="checkbox">' +
+      '<span class="t">'+s.t+'</span>' +
+      '<span class="txt"><strong>'+s.h+'</strong><small>'+s.why+'</small></span></label>' +
+      '<ul class="chk-sub">' + s.items.map(x=>"<li>"+x+"</li>").join("") + '</ul>';
+    const box = li.querySelector("input");
+    box.checked = store[kind].done[i];
+    li.classList.toggle("done", box.checked);
+    box.addEventListener("change", () => {
+      store[kind].done[i] = box.checked;
+      li.classList.toggle("done", box.checked);
+      save(store); tally();
+    });
+    ul.appendChild(li);
+  });
+
+  function tally(){
+    const done = store[kind].done.filter(Boolean).length;
+    const total = data.length;
+    bar.style.width = (done/total*100) + "%";
+    count.textContent = done + " / " + total + (done === total ? " — check completion criteria" : "");
+  }
+  resetBtn.addEventListener("click", () => {
+    store[kind].done = data.map(()=>false);
+    save(store);
+    ul.querySelectorAll("input").forEach(b => b.checked = false);
+    ul.querySelectorAll("li").forEach(l => l.classList.remove("done"));
+    tally();
+  });
+  tally();
+});
+
+/* ---------------- contact-time dial ---------------- */
+(function(){
+  const dial = document.getElementById("dial");
+  const read = document.getElementById("dialRead");
+  const startBtn = document.getElementById("dialStart");
+  const note = document.getElementById("dialNote");
+  let total = 60, left = 60, tick = null;
+  const fmt = s => Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
+  function paint(){
+    read.textContent = fmt(left);
+    dial.style.background = "conic-gradient(var(--accent) " + ((total-left)/total*360) + "deg, var(--tint) 0deg)";
+  }
+  function stop(){ clearInterval(tick); tick = null; startBtn.textContent = "Start"; }
+  startBtn.addEventListener("click", () => {
+    if (tick) { stop(); return; }
+    if (left === 0) left = total;
+    startBtn.textContent = "Pause";
+    tick = setInterval(() => {
+      left--; paint();
+      if (left <= 0){ stop(); note.textContent = "Interval elapsed. Wipe the surface and return the cloth to laundry."; }
+    }, 1000);
+  });
+  document.getElementById("dialReset").addEventListener("click", () => { stop(); left = total; paint(); });
+  document.querySelectorAll("[data-secs]").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("[data-secs]").forEach(x => x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true");
+      stop(); total = +b.dataset.secs; left = total; paint();
+    });
+  });
+  paint();
+})();
+
+/* ---------------- boot ---------------- */
+const start = (location.hash || "").replace("#","");
+show(navBtns.some(b => b.dataset.page === start) ? start : "use", false);
+</script>
+</body>
+</html>
