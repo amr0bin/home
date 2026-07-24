@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Clean by Room · In Good Order</title>
+<meta name="description" content="A room-by-room household cleaning method — each space sorted by the rigour it needs, with products, order of work, routines, and cautions, plus a full shopping list." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#ffffff;--panel:#faf9f8;--ink:#5d5a5b;--ink-strong:#454344;--stone:#a29f9f;
+    --hair:#e6e4e2;--hair-soft:#efedeb;--focus:#5d5a5b;--maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    /* zone accents — muted to sit within the warm-grey palette */
+    --z-bath:#a86a60;--z-kitchen:#6d8299;--z-living:#a98a4a;--z-outdoor:#7c8c63;--z-appliances:#6f6c6d;
+    --z-bath-soft:#f4ecea;--z-kitchen-soft:#eef1f4;--z-living-soft:#f4efe4;--z-outdoor-soft:#eef1e9;--z-appliances-soft:#efedec;
+  }
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Asap",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+    background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.6;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* header / nav */
+  .topbar{display:flex;align-items:baseline;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;
+    padding:26px 0 18px;border-bottom:1px solid var(--hair);}
+  .mark{font-weight:600;font-size:15px;letter-spacing:.02em;color:var(--ink-strong);text-decoration:none;}
+  .navlinks{display:flex;flex-wrap:wrap;gap:20px;}
+  .navlinks a{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);
+    font-weight:600;text-decoration:none;transition:color .2s var(--ease);}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a[aria-current="page"]{color:var(--ink-strong);}
+
+  .hero{padding:52px 0 22px;max-width:720px;}
+  .eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);
+    font-weight:600;margin:0 0 18px;}
+  h1{font-weight:500;font-size:clamp(30px,4.6vw,52px);line-height:1.08;letter-spacing:-.015em;
+    color:var(--ink-strong);margin:0 0 18px;}
+  h1 em{font-style:italic;font-weight:400;color:var(--ink);}
+  .lede{font-size:17px;max-width:620px;margin:0;color:var(--ink);}
+
+  /* legend */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 22px;padding:24px 0 2px;max-width:900px;}
+  .legend-item{display:flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.06em;color:var(--ink);}
+  .swatch{width:10px;height:10px;border-radius:100px;flex:none;}
+  .legend-item b{font-weight:600;color:var(--ink-strong);letter-spacing:.02em;}
+
+  /* filter */
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
+    padding:22px 0 10px;border-bottom:1px solid var(--hair);}
+  .zone-filter{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-family:inherit;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+    color:var(--stone);background:var(--paper);border:1px solid var(--hair);border-radius:100px;
+    padding:6px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+    transition:color .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease);}
+  .chip:hover{color:var(--ink);border-color:var(--stone);}
+  .chip.is-active{color:var(--paper);background:var(--ink);border-color:var(--ink);}
+  .chip:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+  .chip .dot{width:8px;height:8px;border-radius:100px;flex:none;}
+  .count{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);font-weight:600;margin-left:auto;}
+
+  /* gallery grid */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);
+    border:1px solid var(--hair);border-radius:6px;overflow:hidden;margin:28px 0 8px;}
+  .room-card{background:var(--paper);border:none;text-align:left;font-family:inherit;cursor:pointer;
+    padding:26px 22px 22px;display:flex;flex-direction:column;gap:0;min-height:236px;
+    transition:background .22s var(--ease);}
+  .room-card:hover{background:var(--panel);}
+  .room-card:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;}
+  .room-card.is-hidden{display:none;}
+  .v-figure{height:80px;display:flex;align-items:flex-end;margin:0 0 18px;}
+  .v-figure svg{height:80px;width:auto;overflow:visible;}
+  .v-line{fill:none;stroke:var(--stone);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
+    vector-effect:non-scaling-stroke;transition:stroke .24s var(--ease);}
+  .v-soft{fill:none;stroke:var(--stone);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;
+    vector-effect:non-scaling-stroke;opacity:.7;transition:stroke .24s var(--ease);}
+  .room-card:hover .v-line,.room-card:focus-visible .v-line{stroke:var(--ink-strong);}
+  .room-card:hover .v-soft,.room-card:focus-visible .v-soft{stroke:var(--ink);}
+  .tc-zone{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin:0 0 5px;
+    display:flex;align-items:center;gap:7px;}
+  .tc-zone .dot{width:8px;height:8px;border-radius:100px;flex:none;}
+  .tc-name{font-size:18px;font-weight:500;letter-spacing:-.01em;color:var(--ink-strong);margin:0 0 6px;line-height:1.2;}
+  .tc-note{font-size:13px;color:var(--ink);margin:0;}
+  .tc-open{margin-top:auto;padding-top:14px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;color:var(--stone);transition:color .2s var(--ease);}
+  .room-card:hover .tc-open,.room-card:focus-visible .tc-open{color:var(--ink);}
+
+  .empty{padding:40px 4px;color:var(--stone);font-size:14px;display:none;}
+  .empty.show{display:block;}
+
+  /* invitation note */
+  .note{margin:30px 0 6px;padding:20px 22px;background:var(--panel);border:1px solid var(--hair-soft);
+    border-radius:6px;font-size:14.5px;color:var(--ink);max-width:860px;}
+  .note strong{color:var(--ink-strong);font-weight:600;}
+
+  /* shopping list */
+  .kit-section{padding:14px 0 0;scroll-margin-top:20px;}
+  .kit-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 6px;}
+  .kit-eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600;margin:0;}
+  h2.kit-title{font-weight:500;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.015em;color:var(--ink-strong);margin:6px 0 12px;}
+  .kit-lede{font-size:15px;color:var(--ink);max-width:640px;margin:0 0 8px;}
+  .kit-progress{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);font-weight:600;white-space:nowrap;}
+  .kit-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);
+    border:1px solid var(--hair);border-radius:6px;overflow:hidden;margin:16px 0 8px;}
+  .kit-col{background:var(--paper);padding:22px 24px 24px;}
+  .kit-col h3{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600;margin:0 0 14px;}
+  .kit-list{list-style:none;margin:0;padding:0;}
+  .kit-list li{margin:0 0 2px;}
+  .kit-item{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;background:none;border:none;
+    font-family:inherit;font-size:14px;color:var(--ink);cursor:pointer;padding:7px 0;line-height:1.45;
+    transition:color .18s var(--ease);}
+  .kit-item:hover{color:var(--ink-strong);}
+  .kit-item:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .kit-box{width:17px;height:17px;border:1px solid var(--stone);border-radius:4px;flex:none;margin-top:2px;
+    display:grid;place-items:center;transition:background .18s var(--ease),border-color .18s var(--ease);}
+  .kit-box svg{width:11px;height:11px;opacity:0;transition:opacity .18s var(--ease);}
+  .kit-item[aria-pressed="true"] .kit-box{background:var(--ink-strong);border-color:var(--ink-strong);}
+  .kit-item[aria-pressed="true"] .kit-box svg{opacity:1;}
+  .kit-item[aria-pressed="true"] .kit-text{color:var(--stone);text-decoration:line-through;text-decoration-color:var(--hair);}
+  .kit-text b{font-weight:600;color:var(--ink-strong);}
+  .kit-item[aria-pressed="true"] .kit-text b{color:var(--stone);}
+  .kit-note{margin:16px 0 6px;padding:18px 20px;background:var(--panel);border:1px solid var(--hair-soft);
+    border-radius:6px;font-size:14px;color:var(--ink);max-width:860px;}
+  .kit-note strong{color:var(--ink-strong);font-weight:600;}
+
+  footer{border-top:1px solid var(--hair);padding:22px 0 46px;margin-top:40px;font-size:11.5px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--stone);font-weight:600;}
+
+  /* modal card */
+  .scrim{position:fixed;inset:0;background:rgba(69,67,68,.30);backdrop-filter:blur(2px);
+    opacity:0;transition:opacity .28s var(--ease);z-index:40;}
+  .scrim.show{opacity:1;}
+  .card{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper);
+    border-left:1px solid var(--hair);z-index:41;transform:translateX(100%);
+    transition:transform .34s var(--ease);overflow:hidden;}
+  .card.show{transform:translateX(0);}
+  .card-scroll{height:100%;overflow-y:auto;padding:26px 30px 44px;}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+  .card-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:2px 0 0;
+    display:flex;align-items:center;gap:8px;}
+  .card-eyebrow .dot{width:9px;height:9px;border-radius:100px;flex:none;}
+  .closebtn{border:1px solid var(--hair);background:var(--paper);border-radius:100px;width:32px;height:32px;
+    display:grid;place-items:center;cursor:pointer;color:var(--ink);flex:none;transition:border-color .2s var(--ease),color .2s var(--ease);}
+  .closebtn:hover{border-color:var(--stone);color:var(--ink-strong);}
+  .closebtn:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+  .card h2{font-weight:500;font-size:26px;letter-spacing:-.015em;color:var(--ink-strong);margin:8px 0 4px;line-height:1.12;}
+  .card-sub{font-size:14px;color:var(--ink);margin:0 0 4px;}
+  .card-vessel{display:flex;justify-content:center;align-items:flex-end;height:132px;margin:14px 0 6px;
+    border-bottom:1px solid var(--hair);padding-bottom:18px;}
+  .card-vessel svg{height:118px;width:auto;overflow:visible;}
+  .card-vessel .v-line{stroke:var(--ink-strong);stroke-width:1.4;}
+  .card-vessel .v-soft{stroke:var(--ink);}
+  .vessel-cap{text-align:center;font-size:12px;color:var(--stone);margin:0 0 16px;letter-spacing:.02em;}
+  .vessel-cap em{font-style:italic;color:var(--ink);}
+
+  .tabs{display:flex;gap:2px;background:var(--hair);border:1px solid var(--hair);border-radius:100px;
+    padding:3px;margin:0 0 20px;}
+  .tab{flex:1;font-family:inherit;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    color:var(--stone);background:transparent;border:none;border-radius:100px;padding:7px 4px;cursor:pointer;
+    transition:color .2s var(--ease),background .2s var(--ease);}
+  .tab.is-active{color:var(--ink-strong);background:var(--paper);}
+  .tab:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+
+  .layer{animation:fade .34s var(--ease);}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+  .fld{margin:0 0 20px;}
+  .fld-label{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:600;margin:0 0 7px;}
+  .fld p{margin:0;font-size:14.5px;color:var(--ink);}
+  .fld p+p{margin-top:9px;}
+
+  .zonebar{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    font-weight:600;padding:9px 13px;border-radius:5px;margin:0 0 12px;}
+  .zonebar .dot{width:9px;height:9px;border-radius:100px;flex:none;}
+
+  .surfaces{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hair);
+    border:1px solid var(--hair);border-radius:5px;overflow:hidden;margin:2px 0 20px;}
+  .surface{background:var(--panel);padding:11px 14px;}
+  .surface dt{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--stone);font-weight:600;margin:0 0 3px;}
+  .surface dd{margin:0;font-size:14px;color:var(--ink);line-height:1.5;}
+
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;}
+  ol.steps li{position:relative;padding:0 0 15px 34px;counter-increment:s;font-size:14.5px;color:var(--ink);}
+  ol.steps li:last-child{padding-bottom:0;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;
+    border:1px solid var(--hair);border-radius:100px;display:grid;place-items:center;
+    font-size:11px;font-weight:600;color:var(--stone);}
+
+  ul.plain{margin:2px 0 0;padding:0;list-style:none;}
+  ul.plain li{position:relative;padding:0 0 12px 20px;font-size:14.5px;color:var(--ink);line-height:1.5;}
+  ul.plain li:last-child{padding-bottom:0;}
+  ul.plain li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;
+    border:1px solid var(--stone);border-radius:100px;}
+  ul.plain li b{font-weight:600;color:var(--ink-strong);}
+
+  .cadence{border:1px solid var(--hair);border-radius:5px;overflow:hidden;margin:2px 0 0;}
+  .cadence-row{padding:14px 16px;border-bottom:1px solid var(--hair);}
+  .cadence-row:last-child{border-bottom:none;}
+  .cadence-row dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);font-weight:600;margin:0 0 5px;}
+  .cadence-row dd{margin:0;font-size:14px;color:var(--ink);line-height:1.5;}
+
+  .warn{border-left:2px solid var(--z-bath);background:var(--z-bath-soft);border-radius:0 5px 5px 0;
+    padding:13px 16px;margin:2px 0 0;}
+  .warn ul{margin:0;padding:0;list-style:none;}
+  .warn li{position:relative;padding:0 0 9px 18px;font-size:14px;color:var(--ink-strong);line-height:1.5;}
+  .warn li:last-child{padding-bottom:0;}
+  .warn li::before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:100px;background:var(--z-bath);}
+  .warn.materials{border-left-color:var(--stone);background:var(--panel);}
+  .warn.materials li::before{background:var(--stone);}
+
+  @media (max-width:1000px){.gallery{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:760px){.wrap{padding:0 20px;}.gallery{grid-template-columns:repeat(2,1fr);}
+    .card{width:100%;border-left:none;}.kit-cols{grid-template-columns:1fr;}}
+  @media (max-width:440px){.gallery{grid-template-columns:1fr;}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topbar" aria-label="In Good Order">
+      <a class="mark" href="#top">In&nbsp;Good&nbsp;Order</a>
+      <div class="navlinks">
+        <a href="#gallery" aria-current="page">The Rooms</a>
+        <a href="#legend">Colour System</a>
+        <a href="#kit">The Kit</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <p class="eyebrow">A Cleaning Method</p>
+      <h1>Clean it well, <em>room by room</em></h1>
+      <p class="lede">I've sorted the home into zones by how much rigour each one asks for — from the sanitising work of the bathroom to the light touch of a balcony. Open any space for the products I reach for, the order I work in, routines to keep it up, and the cautions I never ignore.</p>
+    </header>
+
+    <div class="legend" id="legend" aria-label="What the colours mean">
+      <span class="legend-item"><span class="swatch" style="background:var(--z-bath)"></span><b>Bathroom</b>&nbsp;— highest rigour, sanitising</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--z-kitchen)"></span><b>Kitchen</b>&nbsp;— high rigour, food-safe</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--z-living)"></span><b>Living &amp; storage</b>&nbsp;— moderate, dust &amp; textiles</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--z-outdoor)"></span><b>Outdoor &amp; entry</b>&nbsp;— lighter, transitional</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--z-appliances)"></span><b>Appliances</b>&nbsp;— periodic deep service</span>
+    </div>
+
+    <div class="controls">
+      <div class="zone-filter" id="zone-filter" role="group" aria-label="Filter by zone"></div>
+      <span class="count" id="count"></span>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+    <p class="empty" id="empty">No spaces in this zone.</p>
+
+    <div class="note"><strong>How I use this guide.</strong> Every room follows the same method: I work <strong>top to bottom</strong> and <strong>cleanest to dirtiest</strong>, and on each surface I <strong>dust or vacuum first, then wash, then sanitise where it's warranted</strong> — a disinfectant only bites on an already-clean surface. The colours are more than a label — I assign a cloth colour to each zone and never let them cross, which is the simplest way I know to keep the dirtiest surfaces from touching the food-safe ones. My kit is deliberately bleach-free, so the classic chlorine-gas reactions don't apply; the one rule that does is to keep my acids — Windex-vinegar, citric acid, Bar Keeper's Friend — away from the hydrogen-peroxide Bio Stain. When in doubt, I use one product, rinse or let it dry, and only then reach for the next.</div>
+
+    <!-- ======================= SHOPPING LIST ======================= -->
+    <section class="kit-section" id="kit" aria-label="Shopping list">
+      <div class="kit-head">
+        <div>
+          <p class="kit-eyebrow">The Kit</p>
+          <h2 class="kit-title">A shopping list</h2>
+        </div>
+        <span class="kit-progress" id="kit-progress"></span>
+      </div>
+      <p class="kit-lede">My actual working set — a handful of honest, versatile products rather than a cupboard of single-use sprays. Every surface product here is bleach-free, with the optional extras marked. Tap an item once you have it.</p>
+      <div class="kit-cols">
+        <div class="kit-col">
+          <h3>Products</h3>
+          <ul class="kit-list" id="kit-products"></ul>
+        </div>
+        <div class="kit-col">
+          <h3>Tools &amp; cloths</h3>
+          <ul class="kit-list" id="kit-tools"></ul>
+        </div>
+      </div>
+      <div class="kit-note"><strong>On the colour-coded cloths.</strong> A separate microfiber colour for each zone — red for the bathroom, blue for the kitchen, yellow for living and storage, green for outdoor and entry — is a professional habit worth borrowing. It stops a cloth that wiped the toilet from ever meeting a kitchen counter. I keep each colour to its zone, launder them separately, and replace them well before they fray.</div>
+    </section>
+
+    <footer>In Good Order · A household cleaning method</footer>
+  </div>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="card" id="card" role="dialog" aria-modal="true" aria-labelledby="card-title" aria-hidden="true">
+    <div class="card-scroll">
+      <div class="card-top">
+        <p class="card-eyebrow" id="card-zone">&nbsp;</p>
+        <button class="closebtn" id="closebtn" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <h2 id="card-title">&nbsp;</h2>
+      <p class="card-sub" id="card-sub">&nbsp;</p>
+      <div class="card-vessel"><svg id="card-vessel-svg" viewBox="0 0 120 96" aria-hidden="true"></svg></div>
+      <p class="vessel-cap" id="vessel-cap">&nbsp;</p>
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" data-layer="approach" role="tab">Approach</button>
+        <button class="tab" data-layer="kit" role="tab">Kit</button>
+        <button class="tab" data-layer="routine" role="tab">Routine</button>
+        <button class="tab" data-layer="cautions" role="tab">Cautions</button>
+      </div>
+      <div class="layer" id="ly-approach" role="tabpanel"></div>
+      <div class="layer" id="ly-kit" role="tabpanel" hidden></div>
+      <div class="layer" id="ly-routine" role="tabpanel" hidden></div>
+      <div class="layer" id="ly-cautions" role="tabpanel" hidden></div>
+    </div>
+  </aside>
+
+<script>
+/* ============================ DATA ============================ */
+const ZONES = {
+  bath:      {label:"Bathroom", rigour:"Highest rigour · sanitising", color:"var(--z-bath)", soft:"var(--z-bath-soft)"},
+  kitchen:   {label:"Kitchen", rigour:"High rigour · food-safe", color:"var(--z-kitchen)", soft:"var(--z-kitchen-soft)"},
+  living:    {label:"Living & storage", rigour:"Moderate rigour · dust & textiles", color:"var(--z-living)", soft:"var(--z-living-soft)"},
+  outdoor:   {label:"Outdoor & entry", rigour:"Lighter rigour · transitional", color:"var(--z-outdoor)", soft:"var(--z-outdoor-soft)"},
+  appliances:{label:"Appliances", rigour:"Periodic deep service", color:"var(--z-appliances)", soft:"var(--z-appliances-soft)"},
+};
+
+const SPACES = [
+{
+  id:"bathroom", zone:"bath", icon:"tub",
+  name:"Bathroom",
+  note:"The wettest, highest-touch room — I clean it for hygiene, not just tidiness.",
+  sub:"High-touch · moisture, soap scum & pathogens",
+  cap:"A room where genuine disinfection earns its place.",
+  approach:{
+    zoneNote:"I treat the bathroom as my highest-rigour zone. Moisture, body soil, and constant hand contact make it the one room where true disinfection matters. I keep red cloths and a dedicated pair of gloves for this space and never carry them anywhere else.",
+    order:[
+      "I ventilate first — fan on or window open — and clear the surfaces.",
+      "I dust and dry-sweep, so I'm not smearing grit into wet surfaces later.",
+      "I wash to remove soap scum, limescale, and body soil from tub, tile, and sink.",
+      "Only once a surface is visibly clean do I sanitise the high-touch points, letting the disinfectant sit for its full contact time.",
+      "I finish with mirrors and glass, then mop the floor, working toward the door."
+    ],
+    surfaces:[
+      ["Ceramic tile & tub","A non-abrasive bathroom cleaner; a soft brush for grout lines."],
+      ["Glass shower & mirrors","Squeegee after each rinse; glass cleaner for water spots."],
+      ["Chrome fixtures","A mild cleaner, then buff dry to stop spotting."],
+      ["Toilet","A dedicated bowl cleaner inside; disinfectant on seat, lid, handle, and base."],
+      ["Natural-stone vanity","A pH-neutral stone cleaner only — nothing acidic."],
+      ["Grout & silicone","A soft brush; a mould remover only where staining has set in."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — wash the tub, tile, and sink","Clorox Bio Stain (hydrogen peroxide) — disinfect the toilet, high-touch points, and grout; lifts mould stains and odour","Bar Keeper's Friend — porcelain sink or tub stains and hard-water marks on taps","Citric acid — descale the showerhead and taps","Windex with vinegar — the mirror only"],
+    tools:["Red microfiber cloths","Dedicated nitrile gloves","Toilet brush","Soft & medium nylon brushes (grout and corners)","Non-scratch pad (for Bar Keeper's Friend)","Glass squeegee","Labelled spray bottle"]
+  },
+  routine:{
+    daily:"Wipe the sink and tap after use; squeegee the shower glass; hang towels to dry; a quick swipe of the toilet seat.",
+    weekly:"Wash tub, shower, and sink with Dawn; disinfect the toilet and high-touch points with Bio Stain (kept wet for its dwell time); clean the mirror; mop the floor.",
+    monthly:"Descale the showerhead and taps with citric acid; scrub the grout; lift any porcelain stains with Bar Keeper's Friend; wash bath mats and the shower liner; check silicone seals for mould."
+  },
+  cautions:{
+    materials:["Keep citric acid, Windex-vinegar, and Bar Keeper's Friend off a natural-stone vanity — all three etch it. Use Dawn and water on stone.","Bar Keeper's Friend is mildly abrasive: rub gently, rinse within a minute, and never use it on acrylic or fibreglass tubs or on glass.","The Bio Stain is peroxide-based — spot-test coloured grout or a coloured shower liner, as it can lighten them.","Rinse chrome well; anything left to dry will spot."],
+    mixing:["I never combine the Bio Stain (peroxide) with the Windex-vinegar or citric acid — mixed, acids and peroxide form a corrosive, irritating vapour. One product per surface: use it, rinse or dry, then the next.","My kit is deliberately bleach-free; I keep it that way so nothing here can react to release chlorine gas."]
+  }
+},
+{
+  id:"kitchen", zone:"kitchen", icon:"pot",
+  name:"Kitchen",
+  note:"Where food safety sets the standard — I clean to prevent contamination, not only to shine.",
+  sub:"Food-contact · grease & bacteria",
+  cap:"Clean in one direction: from clean surfaces toward dirty ones.",
+  approach:{
+    zoneNote:"The kitchen is my second-highest zone. Because raw food and hands meet these surfaces, I keep blue cloths here and always work clean-to-dirty. I do disinfect food-contact surfaces — but only after washing away grease, since soil disables a sanitiser before it can work.",
+    order:[
+      "I clear and put away food, then scrape and load the dishes.",
+      "I crumb-sweep the counters and empty the toaster tray.",
+      "I wash counters, cooktop, backsplash, and sink with a degreasing cleaner.",
+      "I disinfect food-contact surfaces and high-touch points — handles, taps — and let them sit for the full contact time.",
+      "I clean the sink last, as one of the dirtiest points, then sweep and mop."
+    ],
+    surfaces:[
+      ["Sealed counters (laminate / quartz)","All-purpose cleaner or a little mild soap."],
+      ["Natural stone (granite / marble)","A pH-neutral stone cleaner only — never acid or bleach."],
+      ["Stainless steel","A stainless cleaner worked with the grain, then polished."],
+      ["Glass / ceramic cooktop","A cream cleanser, with a cooktop scraper for burnt-on spots."],
+      ["Sink & taps","Degrease, then disinfect, then buff dry."],
+      ["Backsplash & tile","A degreaser; a soft brush along the grout."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — degrease counters, cooktop, and backsplash","Clorox Bio Stain (hydrogen peroxide) — disinfect food-contact surfaces and handles after washing, then rinse food-prep areas with clean water","Bar Keeper's Friend — the stainless sink and burnt-on cooktop marks","Citric acid — descale the kettle and coffee maker","Bio-Clean enzyme cleaner — the sink drain (overnight)"],
+    tools:["Blue microfiber cloths","Non-scratch sponge + heavy-duty sponge","Medium nylon brush","Non-scratch pad (for Bar Keeper's Friend)","Labelled spray bottles","Nitrile gloves"]
+  },
+  routine:{
+    daily:"Wipe counters and cooktop with Dawn after cooking; wash or load the dishes; clean the sink; sweep the floor; take out food waste.",
+    weekly:"Wash, then disinfect counters and high-touch handles with Bio Stain; clean the sink with Bar Keeper's Friend; wipe appliance fronts and the range-hood face; mop the floor.",
+    monthly:"Degrease the range-hood filter; descale the kettle with citric acid; treat the drain with Bio-Clean overnight; wipe cabinet fronts; pull out and clean under the small appliances; clean the bin."
+  },
+  cautions:{
+    materials:["Keep the acids — Bar Keeper's Friend, citric acid, and the low-pH Bio Stain — off granite or marble counters; they etch. Use Dawn and water on stone.","No abrasive pads or Bar Keeper's Friend on a glass cooktop or nonstick — they scratch; rub the sink gently and rinse within a minute.","Disinfectant is not a rinse-free product on food-prep surfaces: after the Bio Stain's dwell time, wipe food-contact areas with clean water."],
+    mixing:["I never combine the Bio Stain (peroxide) with citric acid, or run Bio-Clean and a disinfectant down the same drain — the peroxide-acid pairing is corrosive, and disinfectant kills the drain culture.","One product per surface; my kit stays bleach-free."]
+  }
+},
+{
+  id:"living-room", zone:"living", icon:"sofa",
+  name:"Living Room",
+  note:"The room I clean mostly for air quality and calm — dust first, textiles handled gently.",
+  sub:"Living space · dust, textiles & electronics",
+  cap:"Top to bottom, so nothing I disturb lands on clean ground.",
+  approach:{
+    zoneNote:"Living and sleeping spaces are my moderate-rigour, yellow-cloth zones. The real work is dust — for air quality and allergens — with gentle textile and electronics care alongside. I move strictly top to bottom so what I disturb never settles on a surface I've already finished.",
+    order:[
+      "I tidy and clear surfaces so dust has nowhere to hide.",
+      "I dust from the top down — shelves, frames, sills — with a slightly damp or trapping cloth, so dust is captured, not scattered.",
+      "I wipe the hard surfaces and high-touch points: remotes, switches, handles.",
+      "I care for textiles — vacuum the upholstery, fluff and rotate cushions.",
+      "I vacuum the floor last, finishing along the edges and under the furniture."
+    ],
+    surfaces:[
+      ["Wood furniture","A dry or barely-damp microfiber; wood polish used sparingly."],
+      ["Upholstery","Vacuum with the brush tool; spot-clean to the fabric's own code."],
+      ["Leather","Dust, then a dedicated leather cleaner and conditioner — never all-purpose."],
+      ["Screens & electronics","A dry microfiber, or lightly with distilled water — never glass cleaner."],
+      ["Glass tables","Glass cleaner and a lint-free cloth."],
+      ["Rugs & carpet","Vacuum thoroughly; rotate the rug periodically for even wear."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — hard surfaces and washable tables","Windex with vinegar — glass tables and mirrors only","70% isopropyl alcohol — remotes, switches, and other dry high-touch points, on the cloth","Clorox Bio Stain (hydrogen peroxide) — only as needed, to spot-treat an organic stain on upholstery or carpet (always test a hidden area first, as it can lighten colour)"],
+    tools:["Yellow microfiber cloths","Extendable microfiber duster","Vacuum with upholstery + crevice tools","Lint roller","Dry microfiber (for screens)"]
+  },
+  routine:{
+    daily:"Tidy the surfaces; plump the cushions; a quick dust of what gets used most; spot-wipe any spills.",
+    weekly:"Dust every surface top to bottom; wipe high-touch points with a little alcohol on the cloth; vacuum floors, rugs, and upholstery; clean the glass tables.",
+    monthly:"Reach the high and hidden spots — tops of frames, vents, skirting; vacuum under and behind furniture; rotate cushions; wash throws and covers."
+  },
+  cautions:{
+    materials:["Screens get a dry microfiber only — never the Windex-vinegar or alcohol, which strip anti-glare coatings.","Go easy with alcohol on painted, lacquered, or acrylic finishes; it can dull or craze them. Keep water off wood joints and veneers.","The Bio Stain is peroxide-based — always spot-test coloured fabric or carpet in a hidden place before treating a stain."],
+    mixing:["Here the risk is cross-contamination, not fumes: I keep yellow cloths to these rooms and never bring a bathroom or kitchen cloth onto soft furnishings. Alcohol is flammable — I keep it away from candles and heat."]
+  }
+},
+{
+  id:"closets", zone:"living", icon:"hanger",
+  name:"Closets",
+  note:"Enclosed storage where dust, damp, and stale air gather — I clean for freshness and pest prevention.",
+  sub:"Storage · dust, damp & textiles",
+  cap:"Empty it, clean it, let it breathe, then restock.",
+  approach:{
+    zoneNote:"Closets are a moderate-rigour, yellow-cloth zone. Being enclosed, their enemies are dust, poor air, and moisture — the conditions that keep fabric fresh and discourage moths and mildew. I empty each section, clean it, and let it dry fully before anything goes back.",
+    order:[
+      "I empty the shelves and rails, one section at a time.",
+      "I dust from the top shelf down — including the rail and the hidden corners.",
+      "I wipe the shelves, then vacuum the floor and corners.",
+      "I let the space air and dry completely before restocking.",
+      "I return items sorted and spaced, so air can move between them."
+    ],
+    surfaces:[
+      ["Wood / laminate shelves","A dry or barely-damp cloth, dried immediately after."],
+      ["Wire shelving","Dust with a cloth or the vacuum brush tool."],
+      ["Closet floor","Vacuum the corners and edges, where lint collects."],
+      ["Garments & fabrics","Brush or lint-roll; air out; launder to the label."],
+      ["Mirror / door glass","Glass cleaner and a lint-free cloth."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — a barely-damp wipe of shelves, used sparingly","70% isopropyl alcohol — a quick wipe of handles and hard surfaces (dries fast, leaves no residue)","Clorox Bio Stain (hydrogen peroxide) — only for a musty-odour or organic mark, spot-tested first","Moisture absorbers — silica / desiccant (optional)"],
+    tools:["Yellow microfiber cloths","Vacuum with crevice + brush tools","Extendable duster","Lint roller","Garment brush"]
+  },
+  routine:{
+    daily:"Return things to their place; keep the door able to close; never store anything damp.",
+    weekly:"A quick dust of open shelves and handles; lint-roll or brush the garments in rotation; tidy.",
+    monthly:"Empty and dust each section; vacuum the floor and corners; wipe shelves barely-damp and dry them; refresh the moisture absorbers; rotate seasonal clothing; check for damp, moths, or a musty smell."
+  },
+  cautions:{
+    materials:["Keep moisture to a minimum on wood and laminate — damp is the enemy of enclosed storage; dry every surface before restocking, and never return clothing while it's damp.","Alcohol dries quickly, which is why it suits shelves here — but go light on painted or lacquered surfaces.","The Bio Stain can lighten fabric; keep it to hard surfaces and spot-test anything coloured."],
+    mixing:["The risk here is moisture and cross-contamination, not fumes: I keep yellow cloths to this zone and don't leave damp residues near fabric. Alcohol is flammable — I wipe and let it air out."]
+  }
+},
+{
+  id:"balcony", zone:"outdoor", icon:"railing",
+  name:"Balcony",
+  note:"An outdoor threshold — I focus on grit and weather rather than disinfection.",
+  sub:"Outdoor · dust, pollen & weather",
+  cap:"Sweep it down, use little water — there's no drain to carry it away.",
+  approach:{
+    zoneNote:"The balcony is a lighter-rigour, green-cloth zone. It meets weather and grit rather than body soil, so my aim is to clear debris and protect the surfaces. There's no drain out here, so I use little water and remove what I use rather than hosing it down. Disinfection is rarely needed.",
+    order:[
+      "I clear the furniture, planters, and loose items.",
+      "I sweep thoroughly from the inner wall outward, then dust the railing and ledges — top to bottom.",
+      "I damp-mop the floor and wipe the railing with Dawn and water, wrung out well so little water is left.",
+      "I squeegee or mop up any standing water — with no drain, I don't let it pool on the surface or run over the edge.",
+      "I let everything dry, then return the furniture."
+    ],
+    surfaces:[
+      ["Concrete / stone tile","A stiff broom first, then a mild cleaner — stone cleaner if it's natural stone."],
+      ["Composite / wood decking","A soft brush along the grain; a wood-safe cleaner."],
+      ["Metal railings","A damp cloth, dried to prevent rust; touch up any bare metal."],
+      ["Glass balustrade","Squeegee and glass cleaner."],
+      ["Outdoor furniture","A cleaner matched to the material — fabric, rattan, or metal."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — floor, railing, and furniture","Bar Keeper's Friend — rust spots on metal railings or furniture (rinse well)","Windex with vinegar — a glass balustrade only"],
+    tools:["Green microfiber cloths","Stiff outdoor broom","Medium nylon brush (decking)","Microfiber mop","Two buckets","Squeegee","Watering can (plants only)","Dustpan","Nitrile gloves"]
+  },
+  routine:{
+    daily:"Shake out the mats; wipe the table before use; sweep away obvious leaves or debris.",
+    weekly:"Sweep the whole floor; wipe the railing and furniture with Dawn; water and tidy the plants; sweep off any standing water.",
+    monthly:"Damp-mop the floor and railings; treat any rust with Bar Keeper's Friend and wipe it off; clean under planters and furniture; wash the cushion covers; inspect for rust, mould, or loose fittings."
+  },
+  cautions:{
+    materials:["Keep Bar Keeper's Friend and the Windex-vinegar off natural-stone tile or thresholds — both etch. Dawn and water are safe there.","Rinse Bar Keeper's Friend off metal quickly, and dry the metal afterwards so it doesn't rust.","With no drain, don't flood the floor — damp-mop instead, and avoid pressure-washing soft wood or old grout, which gouges and lifts the joints."],
+    mixing:["My kit is bleach-free, so there's nothing here to react — and with no drain, I use little water and tip dirty rinse water into an indoor sink, never over the edge."]
+  }
+},
+{
+  id:"entrance", zone:"outdoor", icon:"door",
+  name:"Entrance",
+  note:"The threshold that catches the outside world — I clean it to stop grit spreading inward.",
+  sub:"Transitional · grit, footfall & touchpoints",
+  cap:"Its job is containment: a little, often, keeps the rest of the home cleaner.",
+  approach:{
+    zoneNote:"The entrance is a green-cloth, transitional zone whose whole purpose is containment — stopping outdoor grit, salt, and moisture from travelling through the home. Rigour is light, but frequency matters more here than anywhere.",
+    order:[
+      "I shake out and vacuum the doormat, inside and out.",
+      "I dust the door, frame, and any console or hooks from the top down.",
+      "I wipe the high-touch points — handle, lock, light switch, bell.",
+      "I wash the floor, working from the inside edge toward the door.",
+      "I tidy the shoes and returns so the space stays clear."
+    ],
+    surfaces:[
+      ["Entry floor (tile / wood / laminate)","Sweep or vacuum, then the right cleaner for that floor."],
+      ["Doormat","Shake and vacuum; wash or hose it if it's washable."],
+      ["Door & handle","Wipe the door; disinfect the handle as a high-touch point."],
+      ["Console & mirror","Dust the console; glass cleaner on the mirror."],
+      ["Coat hooks / shoe rack","Dust and wipe."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — the floor and console","70% isopropyl alcohol — a quick wipe of the door handle, lock, and switches","Clorox Bio Stain (hydrogen peroxide) — to disinfect the handle more thoroughly when someone's unwell","Windex with vinegar — the entry mirror only"],
+    tools:["Green microfiber cloths","Vacuum or broom for the mat","Microfiber mop","Two buckets","Nitrile gloves"]
+  },
+  routine:{
+    daily:"Straighten the shoes and mats; wipe the handle with a little alcohol; a quick sweep of tracked-in grit.",
+    weekly:"Vacuum and shake the mats; wipe the door, handle, and switches; mop the floor; dust the console and mirror.",
+    monthly:"Wash the doormat; clean the skirting and lower door; wipe the frame and threshold; declutter the shoe and coat area; check the weather seals."
+  },
+  cautions:{
+    materials:["Match water to the floor — none pooling on wood or laminate joints; keep the Windex-vinegar off any stone threshold.","Grit is abrasive: sweep before mopping, or you drag it across the floor and scratch it.","Alcohol on the handle dries fast and leaves no residue; go light on painted door finishes."],
+    mixing:["I keep this zone's green cloths separate from bathroom and kitchen cloths, and I use one product per touchpoint — alcohol or Bio Stain, not both wet at once."]
+  }
+},
+{
+  id:"appliances", zone:"appliances", icon:"appliance",
+  name:"Large Appliances",
+  note:"The machines that do the cleaning need cleaning too — I service each on its own schedule.",
+  sub:"Oven · fridge · dishwasher · washer · dryer",
+  cap:"High rigour, periodic cadence — and safety before shine.",
+  approach:{
+    zoneNote:"Large appliances are a deep-service zone: the rigour is high but the cadence is periodic. Because these machines touch food, water, and heat — and because a clogged dryer vent is a genuine fire risk — I follow each maker's manual first and disconnect power or water whenever the task calls for it.",
+    order:[
+      "I read the manual for anything I haven't cleaned before, and gather the right cloths and brushes.",
+      "I disconnect power, or turn off the water, before reaching inside or behind a machine.",
+      "I wipe or scrape away loose soil first, so cleaners can reach the surface.",
+      "I clean each machine to its own method (below), then run any cleaning cycle it needs.",
+      "I let everything dry — doors ajar where mould can gather — before closing up."
+    ],
+    surfaces:[
+      ["Oven","Wipe spills once cool. For a deep clean I use the self-clean cycle, since my kit has no oven cleaner — this is the one gap worth filling if you clean the oven manually (a dedicated oven cleaner or baking soda). Soak the racks separately."],
+      ["Fridge","Empty in sections; wash the interior with warm water and a little Dawn — nothing harsh near food — and rinse. For a spill or odour, the Bio Stain deodorises, then wipe with clean water. Vacuum the condenser coils once or twice a year."],
+      ["Dishwasher","Clear and rinse the filter often; wipe the door seal; run an empty hot cycle with citric acid to descale and deodorise."],
+      ["Washer","Wipe the drum and, on a front-loader, the gasket where mould collects — the Bio Stain handles that; run a hot cycle with citric acid; leave the door ajar to dry between washes."],
+      ["Dryer","Clear the lint filter every single load; periodically vacuum the lint housing and clear the vent duct to the outside — this one is fire safety, not just performance."]
+    ]
+  },
+  kit:{
+    products:["Dawn dish soap + warm water — fridge interior and appliance fronts","Citric acid — descale the dishwasher, washer, and kettle","Clorox Bio Stain (hydrogen peroxide) — mould and odour on the washer gasket and drum","Bar Keeper's Friend — stainless marks on fronts or the drum (rinse well)","70% isopropyl alcohol — control panels and handles","Add if you clean the oven by hand: a dedicated oven cleaner or baking soda"],
+    tools:["Non-scratch sponges","Soft cloths","Medium nylon brush (gaskets and seals)","Vacuum with crevice tool (coils & lint)","Dryer-vent brush","Nitrile gloves"]
+  },
+  routine:{
+    daily:"Wipe oven spills once cool; scrape plates before the dishwasher; clear the dryer lint filter every load; wipe the fridge as spills happen.",
+    weekly:"Wipe the appliance fronts and handles; wipe the fridge shelves you use most; wipe the dishwasher and washer door seals.",
+    monthly:"Run a citric-acid cycle on the dishwasher and washing machine; treat the washer gasket with Bio Stain; run the oven's self-clean as needed; check the fridge gaskets; wipe the dryer drum.",
+    seasonal:"Vacuum the fridge condenser coils; clear the full dryer vent duct; descale the dishwasher and washer thoroughly; pull the appliances out to clean beneath and behind."
+  },
+  cautions:{
+    materials:["I never use oven cleaner inside a self-cleaning oven — it damages the enamel. If I add one for manual cleaning, it's the only job it does.","In the fridge I stay food-safe: Dawn and water, rinsed. Bar Keeper's Friend goes on stainless only, rubbed with the grain and rinsed within a minute — never on a matte or coated front.","I keep citric acid off any stone and use it only inside the machines and kettle.","I disconnect power before reaching into an oven, and turn off the water before working on a hose."],
+    mixing:["I never run citric acid and the Bio Stain (peroxide) through the same cycle or bucket, and I let a machine rinse fully between agents — the acid-peroxide pairing is corrosive.","My kit is bleach-free, which keeps the enclosed laundry and kitchen free of chlorine-gas risk."]
+  }
+}
+];
+
+/* consolidated shopping list */
+const SHOP = {
+  products:[
+    ["Dawn dish soap","+ warm water — the general wash for sealed, washable surfaces"],
+    ["70% isopropyl alcohol","sanitises dry zones: electronics, switches, handles"],
+    ["Clorox Bio Stain (hydrogen peroxide)","bleach-free disinfectant + organic stain / odour remover, hard and soft surfaces"],
+    ["Bar Keeper's Friend","stainless sink, porcelain, rust and hard-water marks"],
+    ["Bio-Clean enzyme cleaner","drain maintenance, overnight"],
+    ["Windex with vinegar","mirrors and windows only"],
+    ["Citric acid","descale the kettle, dishwasher, and washer"],
+    ["Shout Triple-Acting","laundry stain pre-treat"],
+    ["Tide Free & Clear / Persil","laundry detergent"],
+    ["Moisture absorbers","optional — silica or desiccant for closets"],
+    ["Oven cleaner or baking soda","optional — only if you clean the oven by hand"]
+  ],
+  tools:[
+    ["Colour-coded microfiber cloths","red bath · blue kitchen · yellow living & storage · green outdoor & entry"],
+    ["Medium & soft nylon brushes","grout, corners, gaskets, decking"],
+    ["Non-scratch pad / sponge","for applying Bar Keeper's Friend"],
+    ["Glass squeegee","shower, windows, mirrors"],
+    ["Toilet brush",""],
+    ["Nitrile gloves","a pair per zone"],
+    ["Two buckets","wash and rinse — the two-bucket method"],
+    ["Microfiber flat / spray mop",""],
+    ["Vacuum with HEPA filter","plus upholstery, crevice & brush tools"],
+    ["Extendable microfiber duster",""],
+    ["Labelled spray bottles","decant the Dawn solution; use an opaque bottle for alcohol and peroxide (both degrade in light)"],
+    ["Measuring spoon","for consistent citric-acid descaling"],
+    ["Dryer-vent brush",""],
+    ["Lint roller & garment brush","closets and textiles"],
+    ["Stiff outdoor broom & dustpan",""],
+    ["Step stool","to reach the high dust safely"]
+  ]
+};
+
+/* ============================ ICONS ============================ */
+function icon(key){
+  const I = {
+    // bathtub with tap and drops
+    tub:`<path class="v-line" d="M28 50 L96 50"/>
+      <path class="v-line" d="M32 50 Q30 72 50 72 L74 72 Q94 72 92 50"/>
+      <path class="v-line" d="M40 72 L40 78 M84 72 L84 78"/>
+      <path class="v-line" d="M34 50 L34 42 Q34 38 40 38 L50 38"/>
+      <path class="v-line" d="M50 38 L50 44"/>
+      <path class="v-soft" d="M50 47 L50 49 M46 48 L46 50 M54 48 L54 50"/>`,
+    // cooking pot with lid, handles and steam
+    pot:`<path class="v-line" d="M32 52 L88 52"/>
+      <path class="v-line" d="M36 52 L38 72 Q60 78 82 72 L84 52"/>
+      <path class="v-line" d="M40 52 Q60 44 80 52"/>
+      <path class="v-line" d="M60 44 L60 40"/>
+      <path class="v-line" d="M32 56 L24 54 M88 56 L96 54"/>
+      <path class="v-soft" d="M52 38 Q48 32 52 26 Q56 22 52 16"/>
+      <path class="v-soft" d="M68 38 Q64 32 68 26 Q72 22 68 16"/>`,
+    // sofa / couch
+    sofa:`<path class="v-line" d="M22 70 L98 70"/>
+      <path class="v-line" d="M26 70 L26 54 Q26 48 32 48 L88 48 Q94 48 94 54 L94 70"/>
+      <path class="v-line" d="M26 60 L94 60"/>
+      <path class="v-soft" d="M26 54 L22 54 Q18 54 18 58 L18 70"/>
+      <path class="v-soft" d="M94 54 L98 54 Q102 54 102 58 L102 70"/>
+      <path class="v-soft" d="M60 48 L60 60"/>
+      <path class="v-line" d="M30 70 L30 76 M90 70 L90 76"/>`,
+    // clothes hanger
+    hanger:`<path class="v-line" d="M60 34 Q53 34 53 28 Q53 23 59 23"/>
+      <path class="v-line" d="M60 34 L60 39"/>
+      <path class="v-line" d="M60 39 L34 55 Q32 56 34 58 L86 58 Q88 56 86 55 L60 39"/>
+      <path class="v-soft" d="M40 58 L80 58"/>`,
+    // balcony railing with potted plant
+    railing:`<path class="v-line" d="M20 46 L100 46"/>
+      <path class="v-line" d="M20 64 L100 64"/>
+      <path class="v-line" d="M16 78 L104 78"/>
+      <path class="v-line" d="M30 46 L30 64 M48 46 L48 64 M66 46 L66 64 M84 46 L84 64"/>
+      <path class="v-line" d="M20 46 L20 78 M100 46 L100 78"/>
+      <path class="v-line" d="M26 46 L27 38 L37 38 L38 46"/>
+      <path class="v-soft" d="M32 38 Q28 30 32 24 M32 38 Q36 30 32 24"/>`,
+    // door with mat
+    door:`<path class="v-line" d="M40 22 L40 74 L80 74 L80 22 Z"/>
+      <path class="v-soft" d="M46 30 L74 30 L74 66 L46 66 Z"/>
+      <path class="v-line" d="M70 46 L70 50"/>
+      <path class="v-soft" d="M32 80 L88 80 L94 88 L26 88 Z"/>`,
+    // upright appliance (fridge / oven)
+    appliance:`<path class="v-line" d="M44 22 L44 76 L80 76 L80 22 Z"/>
+      <path class="v-line" d="M44 46 L80 46"/>
+      <path class="v-line" d="M50 30 L50 40 M50 52 L50 62"/>
+      <path class="v-soft" d="M58 27 L74 27"/>
+      <path class="v-line" d="M48 76 L48 80 M76 76 L76 80"/>`
+  };
+  return I[key] || I.appliance;
+}
+
+/* ============================ GALLERY ============================ */
+const ZONE_ORDER = ["bath","kitchen","living","outdoor","appliances"];
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const gallery = document.getElementById("gallery");
+SPACES.forEach(s=>{
+  const z = ZONES[s.zone];
+  const b = document.createElement("button");
+  b.className = "room-card";
+  b.dataset.id = s.id;
+  b.dataset.zone = s.zone;
+  b.setAttribute("aria-haspopup","dialog");
+  b.innerHTML =
+    `<div class="v-figure"><svg viewBox="0 0 120 96" aria-hidden="true">${icon(s.icon)}</svg></div>`+
+    `<p class="tc-zone" style="color:${z.color}"><span class="dot" style="background:${z.color}"></span>${z.label}</p>`+
+    `<p class="tc-name">${s.name}</p>`+
+    `<p class="tc-note">${s.note}</p>`+
+    `<span class="tc-open">Open guide</span>`;
+  b.addEventListener("click",()=>openCard(s.id));
+  gallery.appendChild(b);
+});
+
+/* ============================ FILTER ============================ */
+const filterEl = document.getElementById("zone-filter");
+filterEl.innerHTML =
+  `<button class="chip is-active" data-zone="all" aria-pressed="true">All</button>`+
+  ZONE_ORDER.map(z=>`<button class="chip" data-zone="${z}" aria-pressed="false"><span class="dot" style="background:${ZONES[z].color}"></span>${ZONES[z].label}</button>`).join("");
+const chips = [...filterEl.querySelectorAll(".chip")];
+const cardEls = [...gallery.querySelectorAll(".room-card")];
+const countEl = document.getElementById("count");
+const emptyEl = document.getElementById("empty");
+let active = "all";
+
+function applyFilter(){
+  let shown = 0;
+  cardEls.forEach(el=>{
+    const on = active==="all" || el.dataset.zone===active;
+    el.classList.toggle("is-hidden",!on);
+    if(on) shown++;
+  });
+  countEl.textContent = shown + (shown===1 ? " space" : " spaces");
+  emptyEl.classList.toggle("show",shown===0);
+}
+chips.forEach(c=>c.addEventListener("click",()=>{
+  active = c.dataset.zone;
+  chips.forEach(x=>{const on=x===c;x.classList.toggle("is-active",on);x.setAttribute("aria-pressed",on?"true":"false");});
+  applyFilter();
+}));
+applyFilter();
+
+/* ============================ MODAL ============================ */
+const scrim = document.getElementById("scrim");
+const card = document.getElementById("card");
+const closebtn = document.getElementById("closebtn");
+const tabs = [...card.querySelectorAll(".tab")];
+let lastFocus = null;
+
+function fld(label,html){return `<div class="fld"><p class="fld-label">${label}</p>${html}</div>`;}
+
+function renderApproach(s){
+  const z = ZONES[s.zone];
+  const zoneBar = `<div class="zonebar" style="background:${z.soft};color:${z.color}"><span class="dot" style="background:${z.color}"></span>${z.rigour}</div>`;
+  const steps = `<ol class="steps">`+s.approach.order.map(x=>`<li>${x}</li>`).join("")+`</ol>`;
+  const surf = `<dl class="surfaces">`+s.approach.surfaces.map(([k,v])=>`<div class="surface"><dt>${k}</dt><dd>${v}</dd></div>`).join("")+`</dl>`;
+  return zoneBar +
+    fld("The zone",`<p>${s.approach.zoneNote}</p>`) +
+    fld("The order I work in — top to bottom, clean to dirty, dust → wash → sanitise",steps) +
+    fld("Method by surface",surf);
+}
+function renderKit(s){
+  const p = `<ul class="plain">`+s.kit.products.map(x=>`<li>${x}</li>`).join("")+`</ul>`;
+  const t = `<ul class="plain">`+s.kit.tools.map(x=>`<li>${x}</li>`).join("")+`</ul>`;
+  return fld("Products",p) + fld("Tools & cloths",t);
+}
+function renderRoutine(s){
+  const r = s.routine;
+  const rows = [["Daily maintenance",r.daily],["Weekly clean",r.weekly],["Monthly deep clean",r.monthly]];
+  if(r.seasonal) rows.push(["Seasonally · once or twice a year",r.seasonal]);
+  const html = `<dl class="cadence">`+rows.map(([k,v])=>`<div class="cadence-row"><dt>${k}</dt><dd>${v}</dd></div>`).join("")+`</dl>`;
+  return `<div class="fld">${html}</div>`;
+}
+function renderCautions(s){
+  const mats = `<div class="warn materials"><ul>`+s.cautions.materials.map(x=>`<li>${x}</li>`).join("")+`</ul></div>`;
+  const mix = `<div class="warn"><ul>`+s.cautions.mixing.map(x=>`<li>${x}</li>`).join("")+`</ul></div>`;
+  return fld("Surfaces & materials to protect",mats) +
+    fld("Never mix — chemical safety",mix);
+}
+
+function openCard(id){
+  const s = SPACES.find(x=>x.id===id); if(!s) return;
+  const z = ZONES[s.zone];
+  lastFocus = document.activeElement;
+  const zoneEl = document.getElementById("card-zone");
+  zoneEl.innerHTML = `<span class="dot" style="background:${z.color}"></span><span style="color:${z.color}">${z.label}</span>`;
+  document.getElementById("card-title").textContent = s.name;
+  document.getElementById("card-sub").textContent = s.sub;
+  document.getElementById("card-vessel-svg").innerHTML = icon(s.icon);
+  document.getElementById("vessel-cap").innerHTML = s.cap;
+  document.getElementById("ly-approach").innerHTML = renderApproach(s);
+  document.getElementById("ly-kit").innerHTML = renderKit(s);
+  document.getElementById("ly-routine").innerHTML = renderRoutine(s);
+  document.getElementById("ly-cautions").innerHTML = renderCautions(s);
+  setTab("approach");
+  scrim.hidden = false; card.setAttribute("aria-hidden","false");
+  requestAnimationFrame(()=>{scrim.classList.add("show");card.classList.add("show");});
+  document.body.style.overflow = "hidden";
+  card.querySelector(".card-scroll").scrollTop = 0;
+  closebtn.focus();
+}
+function closeCard(){
+  scrim.classList.remove("show");card.classList.remove("show");
+  card.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+  setTimeout(()=>{scrim.hidden = true;},300);
+  if(lastFocus) lastFocus.focus();
+}
+function setTab(layer){
+  tabs.forEach(tb=>{
+    const on = tb.dataset.layer===layer;
+    tb.classList.toggle("is-active",on);
+    tb.setAttribute("aria-selected",on?"true":"false");
+    document.getElementById("ly-"+tb.dataset.layer).hidden = !on;
+  });
+}
+tabs.forEach(tb=>tb.addEventListener("click",()=>setTab(tb.dataset.layer)));
+scrim.addEventListener("click",closeCard);
+closebtn.addEventListener("click",closeCard);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!scrim.hidden)closeCard();});
+
+/* ============================ SHOPPING LIST ============================ */
+const check = `<span class="kit-box"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
+function renderShop(listEl,items){
+  listEl.innerHTML = items.map(([name,desc])=>{
+    const detail = desc ? ` <b>·</b> ${desc}` : "";
+    return `<li><button class="kit-item" aria-pressed="false">${check}<span class="kit-text"><b>${name}</b>${detail}</span></button></li>`;
+  }).join("");
+}
+renderShop(document.getElementById("kit-products"),SHOP.products);
+renderShop(document.getElementById("kit-tools"),SHOP.tools);
+
+const kitItems = [...document.querySelectorAll(".kit-item")];
+const kitProgress = document.getElementById("kit-progress");
+function updateProgress(){
+  const done = kitItems.filter(i=>i.getAttribute("aria-pressed")==="true").length;
+  kitProgress.textContent = done + " / " + kitItems.length + " gathered";
+}
+kitItems.forEach(i=>i.addEventListener("click",()=>{
+  const on = i.getAttribute("aria-pressed")==="true";
+  i.setAttribute("aria-pressed", on ? "false":"true");
+  updateProgress();
+}));
+updateProgress();
+</script>
+</body>
+</html>
